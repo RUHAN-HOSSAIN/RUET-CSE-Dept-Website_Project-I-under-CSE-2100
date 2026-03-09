@@ -21,4 +21,10 @@ export const heroSlides = [
     title: "Research That Changes the World",
     subtitle: "Explore cutting-edge labs, projects, and publications from our faculty and students",
   },
+  {
+    img: "/demoPhoto/HeroPic-4.jpg",
+    title: "Research That Changes the World",
+    subtitle:
+      "Explore cutting-edge labs, projects, and publications from our faculty and students",
+  },
 ];

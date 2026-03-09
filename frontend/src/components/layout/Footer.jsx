@@ -45,7 +45,7 @@ const Footer = () => {
             <h3
               className="font-medium text-black"
               style={{
-                fontSize:     'clamp(1.1rem, 1.6vw, 1.375rem)',
+                fontSize:     'clamp(1.2rem, 1.6vw, 1.4rem)',
                 marginBottom: 'clamp(0.75rem, 1.2vw, 1.25rem)',
               }}
             >{contactInfo.title}</h3>
@@ -59,17 +59,17 @@ const Footer = () => {
               <p className="flex">
                 <img src={callIcon} className="w-5 shrink-0" />&nbsp;{contactInfo.callNum}
               </p>
-              <a href={contactInfo.email.link} className="hover:text-black/80 flex">
+              <a href={contactInfo.email.link} className="flex">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" className="w-5 shrink-0 fill-gray-blue">
                   <path d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H160Zm320-280L160-640v400h640v-400L480-440Z" />
                 </svg>&nbsp;
-                <span className="hover:text-blue/80 hover:underline transition-colors duration-200">{contactInfo.email.text}</span>
+                <span className="hover:text-blue/80 hover:underline underline-offset-2 transition-colors duration-200">{contactInfo.email.text}</span>
               </a>
-              <a href={contactInfo.website.link} target="_blank" className="flex">
+              <a href={contactInfo.website.link} target="_blank" className="inline-flex">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" className="w-5 shrink-0 fill-gray-blue">
                   <path d="M480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-7-.5-14.5T799-507q-5 29-27 48t-52 19h-80q-33 0-56.5-23.5T560-520v-40H400v-80q0-33 23.5-56.5T480-720h40q0-23 12.5-40.5T563-789q-20-5-40.5-8t-42.5-3q-134 0-227 93t-93 227h200q66 0 113 47t47 113v40H400v110q20 5 39.5 7.5T480-160Z" />
                 </svg>&nbsp;
-                <span className="hover:text-blue/80 hover:underline transition-colors duration-200">{contactInfo.website.text}</span>
+                <span className="hover:text-blue/80 hover:underline underline-offset-2 transition-colors duration-200">{contactInfo.website.text}</span>
               </a>
             </div>
           </div>
@@ -82,7 +82,7 @@ const Footer = () => {
             <h3
               className="font-medium text-black"
               style={{
-                fontSize:     'clamp(1.1rem, 1.6vw, 1.375rem)',
+                fontSize:     'clamp(1.2rem, 1.6vw, 1.4rem)',
                 marginBottom: 'clamp(0.75rem, 1.2vw, 1.25rem)',
               }}
             >{aboutRUET.title}</h3>
@@ -99,13 +99,13 @@ const Footer = () => {
                 className="bg-white relative overflow-hidden border border-light-blue rounded-full font-medium group"
                 style={{
                   fontSize:      'clamp(0.95rem, 1.05vw, 1rem)',
-                  paddingTop:    'clamp(0.3rem, 0.5vw, 0.5rem)',
-                  paddingBottom: 'clamp(0.3rem, 0.5vw, 0.5rem)',
+                  paddingTop:    'clamp(0.35rem, 0.5vw, 0.5rem)',
+                  paddingBottom: 'clamp(0.35rem, 0.5vw, 0.5rem)',
                   paddingLeft:   'clamp(1.5rem, 2.5vw, 2.5rem)',
                   paddingRight:  'clamp(1.5rem, 2.5vw, 2.5rem)',
                 }}
               >
-                <span className="relative z-10 text-black/90 group-hover:text-white transition duration-300">
+                <span className="relative z-10 text-black/80 group-hover:text-white transition duration-300">
                   {aboutRUET.button.text}
                 </span>
                 <span className="absolute inset-x-0 bottom-0 h-0 bg-blue transition-all duration-400 ease-out group-hover:h-full" />
@@ -121,7 +121,7 @@ const Footer = () => {
             <h3
               className="font-medium text-black"
               style={{
-                fontSize:     'clamp(1.1rem, 1.6vw, 1.375rem)',
+                fontSize:     'clamp(1.2rem, 1.6vw, 1.4rem)',
                 marginBottom: 'clamp(0.75rem, 1.2vw, 1.25rem)',
               }}
             >{importantLinks.title}</h3>
@@ -132,7 +132,7 @@ const Footer = () => {
               {importantLinks.columns.map((column, i) => (
                 <ul key={i} className="[&>li]:cursor-pointer [&>li]:transition-colors [&>li]:duration-200">
                   {column.map((item) => (
-                    <li key={item.text} className="hover:text-blue hover:underline">
+                    <li key={item.text} className="hover:text-blue hover:underline underline-offset-2">
                       {item.link.startsWith('http') ? (
                         <a href={item.link} target="_blank" rel="noreferrer">{item.text}</a>
                       ) : (

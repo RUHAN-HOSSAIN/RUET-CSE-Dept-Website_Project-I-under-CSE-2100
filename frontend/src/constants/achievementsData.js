@@ -21,7 +21,7 @@ export const achievements = [
     description: "A team of four CSE undergraduates represented RUET at the International Collegiate Robotics Championship held in Seoul, South Korea, and returned with the Gold Medal in the Autonomous Navigation category. The team's robot demonstrated exceptional precision and adaptability in dynamic obstacle environments, impressing judges from 23 participating nations.",
   },
   {
-    imgURL:      "/demoPhoto/20.jpg",
+    imgURL:      "/demoPhoto/20.png",
     date:        "15 December, 2025",
     isoDate:     "2025-12-15",
     title:       "PhD Student Publishes Research in Nature Scientific Reports",

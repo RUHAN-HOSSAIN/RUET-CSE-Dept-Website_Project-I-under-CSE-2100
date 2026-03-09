@@ -1,6 +1,33 @@
 export const campusLifeItems = [
   {
-    imgURL: "./demoPhoto/3.webp",
+    imgURL: "./demoPhoto/13.jpg",
+    date: "10 January, 2026",
+    isoDate: "2026-01-10",
+    title:
+      "CSE Sports Week 2026 — Cricket, Football, and Badminton Tournaments Conclude",
+    description:
+      "The CSE Department Sports Week 2026 wrapped up after five days of exciting competition across cricket, football, and badminton. Inter-batch rivalries played out on the field with great sportsmanship and enthusiasm. The closing ceremony included a prize distribution event and a friendly match between faculty and students.",
+  },
+  {
+    imgURL: "./demoPhoto/14.jpg",
+    date: "05 March, 2026",
+    isoDate: "2026-03-05",
+    title:
+      "Spring Picnic 2026 — CSE Department Gathers for a Day of Fun and Bonding",
+    description:
+      "Students and faculty of the CSE department came together for the annual Spring Picnic at a scenic riverside resort outside Rajshahi. The day was filled with team games, cultural performances, and a barbecue dinner. The event helped strengthen bonds between batches and gave everyone a refreshing break from academic routine.",
+  },
+  {
+    imgURL: "./demoPhoto/17.jpg",
+    date: "12 November, 2025",
+    isoDate: "2025-11-12",
+    title:
+      "Blood Donation Drive — CSE Volunteers Collect 80+ Units for District Hospital",
+    description:
+      "In collaboration with the RUET Medical Centre and Rajshahi District Hospital, CSE students organized a blood donation drive that collected over 80 units of blood. The initiative was led by the CSE Social Welfare Club and saw enthusiastic participation from students of all years. Refreshments and certificates of appreciation were provided to all donors.",
+  },
+  {
+    imgURL: "./demoPhoto/9.jpg",
     date: "10 January, 2026",
     isoDate: "2026-01-10",
     title:

@@ -105,6 +105,13 @@ export const newsEvents = [
     description: "The CSE department reached a significant milestone in 2025 with faculty and students collectively publishing more than 50 research papers in Scopus and Web of Science indexed journals. This represents a 40% increase over the previous year and reflects the department's commitment to research excellence and academic impact.",
   },
   {
+    imgURL:      "./demoPhoto/18.jpg",
+    date:        "10 December, 2025",
+    isoDate:     "2025-12-10",
+    title:       "Industry Partnership Summit 2025 — Expanding Collaboration Frontiers",
+    description: "The Industry Partnership Summit 2025 brought together representatives from over 15 technology companies to discuss extended collaboration opportunities with the department. Agenda items included curriculum advisory input, co-supervised thesis programs, and sponsored research initiatives. Several new partnerships were formally announced at the summit.",
+  },
+  {
     imgURL:      "./demoPhoto/16.jpg",
     date:        "05 October, 2025",
     isoDate:     "2025-10-05",
@@ -112,10 +119,25 @@ export const newsEvents = [
     description: "In observance of Cybersecurity Awareness Month, the department organized a poster presentation competition and an inter-batch quiz contest focusing on digital safety, privacy, and ethical computing. The event aimed to cultivate a security-conscious mindset among students and faculty, with prizes awarded to the top three teams in each category.",
   },
   {
-    imgURL:      "./demoPhoto/20.jpg",
+    imgURL:      "./demoPhoto/19.jpg",
+    date:        "18 November, 2025",
+    isoDate:     "2025-11-18",
+    title:       "Research Publication Milestone: 50+ Papers in Indexed Journals in 2025",
+    description: "The CSE department reached a significant milestone in 2025 with faculty and students collectively publishing more than 50 research papers in Scopus and Web of Science indexed journals. This represents a 40% increase over the previous year and reflects the department's commitment to research excellence and academic impact.",
+  },
+  {
+    imgURL:      "./demoPhoto/20.png",
     date:        "17 February, 2025",
     isoDate:     "2025-02-17",
     title:       "Generative AI Study Circle Launch — Weekly Discussion Sessions Begin",
     description: "A student-led Generative AI Study Circle was formally launched within the department, aimed at fostering collaborative learning around the latest advancements in AI. Weekly sessions cover research papers, hands-on experiments with open-source models, and discussions on ethical implications. Faculty mentors guide the group on project ideation and publication opportunities.",
   },
+  {
+    imgURL:      "./demoPhoto/17.jpg",
+    date:        "28 January, 2026",
+    isoDate:     "2026-01-28",
+    title:       "CSE Fest 2026 Closing Ceremony and Prize Distribution",
+    description: "The closing ceremony of CSE Fest 2026 was held with the distribution of prizes across all competition categories. The event recognized top performers in programming contests, project exhibitions, and design challenges. The Department Head expressed appreciation for the student volunteers and sponsors who made the event a grand success.",
+  },
+  
 ]

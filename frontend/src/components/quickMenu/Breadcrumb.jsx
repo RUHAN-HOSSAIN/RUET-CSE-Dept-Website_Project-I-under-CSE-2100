@@ -29,7 +29,7 @@ const Breadcrumb = ({ current }) => {
         &nbsp; Home
       </Link>
       &gt;
-      <span className="hover:text-light-blue px-1.5">{current}</span>
+      <span className="hover:text-light-blue underline underline-offset-2 px-1.5">{current}</span>
     </div>
   )
 }

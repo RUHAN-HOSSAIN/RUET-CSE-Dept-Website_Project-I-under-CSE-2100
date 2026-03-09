@@ -1,6 +1,27 @@
 export const mouCollaborations = [
   {
-    imgURL:      "/demoPhoto/1.webp",
+    imgURL:      "/demoPhoto/12.jpg",
+    date:        "22 January, 2026",
+    isoDate:     "2026-01-22",
+    title:       "Academic MOU with Khulna University of Engineering & Technology — Joint Research",
+    description: "RUET CSE formalized an academic MOU with KUET's CSE department to enable joint research initiatives, faculty exchange, and co-publication of scholarly work. The agreement also opens pathways for students from both institutions to participate in each other's workshops, seminars, and academic competitions.",
+  },
+  {
+    imgURL:      "/demoPhoto/14.jpg",
+    date:        "18 November, 2025",
+    isoDate:     "2025-11-18",
+    title:       "MOU with TechnoNext — AI Research Lab and Co-Supervised Graduate Projects",
+    description: "TechnoNext Software Limited and RUET CSE signed an MOU establishing a jointly funded AI Research Lab on campus. The lab will support co-supervised graduate projects, with TechnoNext engineers serving as industry co-supervisors for selected MSc and PhD dissertations. A joint publication program has also been agreed upon as part of the arrangement.",
+  },
+  {
+    imgURL:      "/demoPhoto/15.jpg",
+    date:        "30 October, 2025",
+    isoDate:     "2025-10-30",
+    title:       "Agreement with Grameenphone — IoT Research Collaboration and Network Testbed Access",
+    description: "Grameenphone Ltd. and RUET CSE announced a research collaboration agreement focused on Internet of Things applications and next-generation network technologies. Under the agreement, Grameenphone will provide access to a live network testbed for faculty and graduate researchers, along with co-funding for selected IoT research projects.",
+  },
+  {
+    imgURL:      "/demoPhoto/16.jpg",
     date:        "01 March, 2026",
     isoDate:     "2026-03-01",
     title:       "MOU Signed with Brain Station 23 for Research Collaboration and Internship Program",
@@ -77,7 +98,7 @@ export const mouCollaborations = [
     description: "Samsung R&D Institute Bangladesh signed a landmark MOU with RUET CSE to establish an on-campus Innovation Lab equipped with Samsung development hardware. The agreement includes a structured talent pipeline, with Samsung conducting on-campus technical assessments and offering competitive internship placements to high-performing students each semester.",
   },
   {
-    imgURL:      "/demoPhoto/20.jpg",
+    imgURL:      "/demoPhoto/20.png",
     date:        "15 February, 2025",
     isoDate:     "2025-02-15",
     title:       "Partnership with BASIS — Industry Readiness Workshops and Certification Support",
