@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from 'react'
 import { disablePageScroll, enablePageScroll } from 'scroll-lock'
 import { Link } from 'react-router-dom'
@@ -14,6 +13,7 @@ const Header = () => {
   const [openAccordion, setOpenAccordion] = useState(null)
   const [scrolled, setScrolled] = useState(false)
   const headerRef = useRef(null)
+  const panelRef  = useRef(null)
   const [headerHeight, setHeaderHeight] = useState(72)
 
   useEffect(() => {
@@ -42,8 +42,8 @@ const Header = () => {
   const toggleMenu = () => {
     setOpenMenu((prev) => {
       const next = !prev
-      if (next) disablePageScroll()
-      else { enablePageScroll(); setOpenAccordion(null) }
+      if (next) disablePageScroll(panelRef.current)
+      else { enablePageScroll(panelRef.current); setOpenAccordion(null) }
       return next
     })
   }
@@ -56,7 +56,7 @@ const Header = () => {
     const handleResize = () => {
       if (window.innerWidth >= 1160) {
         setOpenMenu(false)
-        enablePageScroll()
+        enablePageScroll(panelRef.current)
         setOpenAccordion(null)
       }
       if (window.innerWidth < 700) setScrolled(false)
@@ -255,6 +255,7 @@ const Header = () => {
 
       {/* MOBILE PANEL */}
       <div
+        ref={panelRef}
         className={`lg:hidden fixed right-0 bottom-0 z-1002
           bg-white font-inter shadow-2xl
           overflow-y-auto overflow-x-hidden
