@@ -211,7 +211,7 @@ const Notice = () => {
                     return (
                       <li
                         key={item.id}
-                        className="flex hover:text-dark-blue-0 transition-colors duration-200 border-b border-light-blue last:border-none"
+                        className="group flex hover:text-orange-600 transition-colors duration-200 border-b border-light-blue hover:border-orange-600 last:border-none"
                         style={{ paddingTop: 'clamp(0.5rem, 1vw, 0.875rem)', paddingBottom: 'clamp(0.5rem, 1vw, 0.875rem)' }}
                       >
                         <div
@@ -222,10 +222,10 @@ const Notice = () => {
                             minWidth:    'clamp(3rem, 5vw, 5.5rem)',
                           }}
                         >
-                          <p style={{ fontSize: 'clamp(0.65rem, 0.85vw, 0.8rem)', marginBottom: '0.1rem' }}>
+                          <p className="" style={{ fontSize: 'clamp(0.65rem, 0.85vw, 0.8rem)', marginBottom: '0.1rem' }}>
                             {month} {year}
                           </p>
-                          <p className="text-blue" style={{ fontSize: 'clamp(1.8rem, 3vw, 2.7rem)', fontWeight: 500, lineHeight: 1 }}>
+                          <p className="text-blue group-hover:text-orange-600" style={{ fontSize: 'clamp(1.8rem, 3vw, 2.7rem)', fontWeight: 500, lineHeight: 1 }}>
                             {day}
                           </p>
                         </div>

@@ -8,14 +8,18 @@ import { Link } from "react-router-dom"
  *   date        {string}
  *   description {string}  — long text, clamped to 3 lines with ellipsis
  */
+
 const NewsEventsCard = ({ imgURL, title, date, description }) => {
   return (
     <div className="flex flex-col group cursor-pointer">
 
       {/* Image — zooms on card hover */}
-      <div className="relative w-full overflow-hidden bg-light-blue/30" style={{ paddingBottom: '62.5%' }}>
+      <div 
+        className="relative w-full overflow-hidden bg-light-blue/30" 
+        style={{ paddingBottom: '62.5%' }}
+      >
         <img
-          src={imgURL || '/RUET-logo.png'}
+          src={imgURL}
           alt={title}
           className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
         />
@@ -32,7 +36,7 @@ const NewsEventsCard = ({ imgURL, title, date, description }) => {
 
         {/* Title */}
         <p
-          className="font-dmSans font-semibold text-black/85 group-hover:text-dark-blue-0 transition-colors duration-200"
+          className="font-dmSans font-semibold text-black/85 group-hover:text-orange-600 transition-colors duration-200"
           style={{
             fontSize:   'clamp(1rem, 1.15vw, 1.1rem)',
             lineHeight: 1.5,

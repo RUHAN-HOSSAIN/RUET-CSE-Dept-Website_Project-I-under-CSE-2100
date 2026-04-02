@@ -1,11 +1,19 @@
 import Hero from "../components/home/Hero"
-import NoticeAnouncement from "../components/home/NoticeAnouncement"
+import AboutAndHead from "../components/home/AboutAndHead"
+import HomeNoticeNews from "../components/home/HomeNoticeNews"
+import HomeAchivement from "../components/home/HomeAchivement"
+import HomeCampusLife from "../components/home/HomeCampusLife"
+import HomeLowerBody from "../components/home/HomeLowerBody"
 
 const Home = () => {
   return (
     <>
       <Hero />
-      <NoticeAnouncement />
+      <AboutAndHead />
+      <HomeNoticeNews />
+      <HomeAchivement />
+      <HomeCampusLife />
+      <HomeLowerBody />
     </>
   )
 }

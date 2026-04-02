@@ -1,6 +1,6 @@
 import { useState, useMemo, useEffect } from "react"
 
-import NewsEventsCard        from "../../components/quickMenu/NewsEventsCard"
+import NewsEventsCard        from "../../components/quickMenu/ContentCard"
 import Breadcrumb            from "../../components/quickMenu/Breadcrumb"
 import PageHeroBanner        from "../../components/quickMenu/PageHeroBanner"
 import Pagination            from "../../components/quickMenu/Pagination"
@@ -200,7 +200,9 @@ const NewsEvents = () => {
               ) : (
                 <div
                   className="grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1"
-                  style={{ gap: 'clamp(1.4rem, 2vw, 2rem)' }}
+                  style={{ 
+                    gap: 'clamp(1.6rem, 2.8vw, 2.5rem) clamp(1.4rem, 2vw, 1.7rem)',
+                  }}
                 >
                   {currentItems.map((item, idx) => (
                     <NewsEventsCard

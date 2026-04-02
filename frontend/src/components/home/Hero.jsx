@@ -30,7 +30,7 @@ const Hero = () => {
           lockedRef.current = true
         }
       } else {
-        setHeroHeight('60dvh')
+        setHeroHeight('60vh')
         lockedRef.current = true
       }
     }
@@ -52,7 +52,7 @@ const Hero = () => {
         ) || 100
         setHeroHeight(`${window.innerHeight - headerHeight}px`)
       } else {
-        setHeroHeight('60dvh')
+        setHeroHeight('60vh')
       }
       lockedRef.current = true
     }
@@ -72,7 +72,7 @@ const Hero = () => {
   return (
     <div
       className="relative w-full overflow-hidden"
-      style={{ height: heroHeight || '60dvh' }}
+      style={{ height: heroHeight || '60vh' }}
     >
 
         {/* ── heroSlides ── */}

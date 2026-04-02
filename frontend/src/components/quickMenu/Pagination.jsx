@@ -114,7 +114,9 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
                 fontWeight:  item === safePage ? 700                           : 500,
                 cursor:      'pointer',
               }}
-            >{item}</button>
+            >
+              {item}
+            </button>
           )
       )}
 

@@ -1,6 +1,6 @@
 import { useState, useMemo, useEffect } from "react"
 
-import NewsEventsCard        from "../../components/quickMenu/NewsEventsCard"
+import ContentCard        from "../../components/quickMenu/ContentCard"
 import Breadcrumb            from "../../components/quickMenu/Breadcrumb"
 import PageHeroBanner        from "../../components/quickMenu/PageHeroBanner"
 import Pagination            from "../../components/quickMenu/Pagination"
@@ -134,9 +134,13 @@ const MouCollaboration = () => {
                   <button onClick={handleReset} className="mt-1 text-blue border border-blue px-4 py-1.5 text-sm hover:bg-blue/10 transition-colors">Clear Filters</button>
                 </div>
               ) : (
-                <div className="grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1" style={{ gap: 'clamp(1.4rem, 2vw, 2rem)' }}>
+                <div 
+                  className="grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1" 
+                  style={{ 
+                    gap: 'clamp(1.7rem, 3vw, 2.5rem) clamp(1.4rem, 2vw, 2rem)' 
+                  }}>
                   {currentItems.map((item, idx) => (
-                    <NewsEventsCard key={idx} imgURL={item.imgURL} title={item.title} date={item.date} description={item.description} />
+                    <ContentCard key={idx} imgURL={item.imgURL} title={item.title} date={item.date} description={item.description} />
                   ))}
                 </div>
               )}

@@ -25,7 +25,7 @@ const PageHeroBanner = ({ title, navLinks = [], activeTo }) => {
       style={{ minHeight: 'clamp(9rem, 22vw, 30dvh)' }}
     >
       {/* Background pattern */}
-      <div
+      {/* <div
         className="absolute inset-0 z-0"
         style={{
           backgroundImage: `
@@ -35,7 +35,7 @@ const PageHeroBanner = ({ title, navLinks = [], activeTo }) => {
           `,
           backgroundSize: "8px 8px, 32px 32px, 32px 32px",
         }}
-      />
+      /> */}
 
       {/* Page title */}
       <div

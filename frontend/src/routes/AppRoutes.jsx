@@ -78,6 +78,7 @@ const AppRoutes = () => {
         <Route path="/quickMenu/mou-collaboration" element={<MouCollaboration />} />
 
         {/* <Route path="/contact" element={<Contact />} /> */}
+        
         {/* <Route path="/about/cse"               element={<AboutCSE />} /> */}
         {/* <Route path="/about/message-from-head" element={<MessageFromHead />} /> */}
         {/* <Route path="/about/mission-vision"    element={<MissionVision />} /> */}
