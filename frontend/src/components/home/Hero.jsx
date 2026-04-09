@@ -30,7 +30,7 @@ const Hero = () => {
           lockedRef.current = true
         }
       } else {
-        setHeroHeight('60vh')
+        setHeroHeight('40vh')
         lockedRef.current = true
       }
     }
@@ -52,7 +52,7 @@ const Hero = () => {
         ) || 100
         setHeroHeight(`${window.innerHeight - headerHeight}px`)
       } else {
-        setHeroHeight('60vh')
+        setHeroHeight('40vh')
       }
       lockedRef.current = true
     }
@@ -72,7 +72,7 @@ const Hero = () => {
   return (
     <div
       className="relative w-full overflow-hidden"
-      style={{ height: heroHeight || '60vh' }}
+      style={{ height: heroHeight || '40vh' }}
     >
 
         {/* ── heroSlides ── */}
@@ -92,7 +92,7 @@ const Hero = () => {
             <div className="absolute inset-0 bg-linear-to-t from-black/40 to-40% to-transparent" />
 
             {/* Text block — bottom left */}
-            <div className="absolute bottom-0 left-0 right-0 pb-14 px-8 lg:px-16 xl:px-24" style={{ zIndex: 2 }}>
+            <div className="absolute bottom-0 left-0 right-0 pb-6 sm:pb-10 md:pb-14 px-8 lg:px-16 xl:px-24" style={{ zIndex: 2 }}>
               <h1
                 className="text-white font-dmSans font-extrabold leading-tight mb-2 max-w-4xl"
                 style={{
@@ -104,7 +104,7 @@ const Hero = () => {
               </h1>
               {slide.subtitle && (
                 <p
-                  className="font-poppins text-white/80 max-w-3xl leading-relaxed"
+                  className="max-sm:hidden font-poppins text-white/80 max-w-3xl leading-relaxed"
                   style={{
                     fontSize: 'clamp(0.875rem, 1.4vw, 1.05rem)',
                     textShadow: '0 2px 16px rgba(0,0,0,1)',

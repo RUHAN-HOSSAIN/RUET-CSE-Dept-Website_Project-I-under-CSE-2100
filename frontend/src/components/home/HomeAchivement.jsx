@@ -107,7 +107,7 @@ const HomeAchivement = () => {
 
   return (
     <>
-      <div className='font-poppins p-10 sm:p-14 md:px-17 md:py-16 lg:px-20 bg-light-blue/5 w-full overflow-hidden'>
+      <div className='font-poppins p-8 sm:p-14 md:px-17 md:py-16 lg:px-20 bg-light-blue/5 w-full overflow-hidden'>
 
         {/* Header Row */}
         <div className='mb-9 flex justify-between gap-2'>

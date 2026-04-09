@@ -4,7 +4,7 @@ import LowerbgImg from "../../assets/bottom-6.png";
 const HomeLowerBody = () => {
   return (
 
-    <div className="w-full relative overflow-hidden pt-10 sm:pt-15 md:pt-20">
+    <div className="w-full relative overflow-hidden pt-10 sm:pt-15 md:pt-20 mb-5 sm:mb-10 md:mb-15 lg:mb-20">
       <div
         className="absolute inset-0 -z-5"
         style={{

@@ -64,6 +64,7 @@ const HomeNoticeNews = () => {
             </div>
         </div>
 
+        {/* <hr className="md:hidden text-blue my-5" /> */}
 
         { /* Notices Section */ }
         <div className='flex-1 h-full md:min-w-70'>

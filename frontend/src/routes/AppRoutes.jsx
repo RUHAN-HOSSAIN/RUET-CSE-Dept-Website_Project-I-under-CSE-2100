@@ -1,15 +1,15 @@
 import { Routes, Route, Outlet, useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
 
-import Home             from '../pages/Home'
-import NotFound         from '../pages/NotFound'
-import Header           from '../components/layout/Header'
-import Footer           from '../components/layout/Footer'
+import Home from '../pages/Home'
+import NotFound from '../pages/NotFound'
+import Header from '../components/layout/Header'
+import Footer from '../components/layout/Footer'
 
-import Notice           from '../pages/quickMenu/Notice'
-import NewsEvents       from '../pages/quickMenu/NewsEvents'
-import Achievements     from '../pages/quickMenu/Achievements'
-import CampusLife       from '../pages/quickMenu/CampusLife'
+import Notice from '../pages/quickMenu/Notice'
+import NewsEvents from '../pages/quickMenu/NewsEvents'
+import Achievements from '../pages/quickMenu/Achievements'
+import CampusLife from '../pages/quickMenu/CampusLife'
 import MouCollaboration from '../pages/quickMenu/MouCollaboration'
 
 // import Contact          from '../pages/Contact'
@@ -71,14 +71,14 @@ const AppRoutes = () => {
       }>
         <Route path="/" element={<Home />} />
 
-        <Route path="/notice"                    element={<Notice />} />
-        <Route path="/news-events"               element={<NewsEvents />} />
-        <Route path="/achievements"              element={<Achievements />} />
-        <Route path="/campus-life"               element={<CampusLife />} />
+        <Route path="/notice" element={<Notice />} />
+        <Route path="/news-events" element={<NewsEvents />} />
+        <Route path="/achievements" element={<Achievements />} />
+        <Route path="/campus-life" element={<CampusLife />} />
         <Route path="/quickMenu/mou-collaboration" element={<MouCollaboration />} />
 
         {/* <Route path="/contact" element={<Contact />} /> */}
-        
+
         {/* <Route path="/about/cse"               element={<AboutCSE />} /> */}
         {/* <Route path="/about/message-from-head" element={<MessageFromHead />} /> */}
         {/* <Route path="/about/mission-vision"    element={<MissionVision />} /> */}
@@ -113,9 +113,9 @@ const AppRoutes = () => {
         {/* <Route path="/student/login"           element={<StudentLogin />} /> */}
         {/* <Route path="/student/results"         element={<Results />} /> */}
 
+        <Route path="*" element={<NotFound />} />
       </Route>
-
-      <Route path="*" element={<NotFound />} />
+      
     </Routes>
   )
 }
