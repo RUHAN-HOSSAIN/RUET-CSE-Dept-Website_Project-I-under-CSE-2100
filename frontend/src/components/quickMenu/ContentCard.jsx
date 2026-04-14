@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom"
+import formatDate from "../../utils/formatDate"
 
 /**
  * NewsEventsCard
@@ -32,11 +33,11 @@ const NewsEventsCard = ({ imgURL, title, date, description }) => {
         <p
           className="text-dark-blue-0 font-medium"
           style={{ fontSize: 'clamp(0.8rem, 1vw, 0.95rem)' }}
-        >{date}</p>
+        >{formatDate(date)}</p>
 
         {/* Title */}
         <p
-          className="font-dmSans font-semibold text-black/85 group-hover:text-orange-600 transition-colors duration-200"
+          className="font-dmSans font-semibold text-black/85 group-hover:text-orange-600 transition-colors duration-200 line-clamp-3"
           style={{
             fontSize:   'clamp(1rem, 1.15vw, 1.1rem)',
             lineHeight: 1.5,

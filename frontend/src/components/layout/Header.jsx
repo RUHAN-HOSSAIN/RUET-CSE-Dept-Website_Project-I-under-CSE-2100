@@ -141,7 +141,7 @@ const Header = () => {
                 }}
               >
                 <a href="https://www.ruet.ac.bd/" target="_blank" className="hover:text-blue duration-300">RUET Main</a>|
-                <Link to="*" className="relative group flex items-center gap-1 hover:text-blue duration-300">
+                <Link to="/" className="relative group flex items-center gap-1 hover:text-blue duration-300">
                   Web Mail&nbsp;
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"
                     className="fill-black group-hover:fill-blue"
@@ -151,7 +151,7 @@ const Header = () => {
                 </Link>|
                 <Link to="/alumni" className="hover:text-blue duration-300">Alumni</Link>|
                 {/* <a href="https://www.cse.ruet.ac.bd/login" target='_blank' className="hover:text-blue duration-300">Login</a> */}
-                <Link to="/admin" className="hover:text-blue duration-300">Login</Link>
+                <Link to="/admin/login" className="hover:text-blue duration-300">Login</Link>
                 <div className="relative flex items-center border border-blue rounded-full">
                   <input
                     type="text"
@@ -333,10 +333,10 @@ const Header = () => {
 
           <div className="flex flex-wrap gap-x-6 gap-y-2.5 text-[14px] font-semibold text-gray-700">
             <a href="https://www.ruet.ac.bd/" target="_blank" className="hover:text-blue transition-colors duration-200 whitespace-nowrap">RUET Main</a>
-            <Link to="*" className="hover:text-blue transition-colors duration-200">Web Mail</Link>
+            <Link to="/" className="hover:text-blue transition-colors duration-200">Web Mail</Link>
             <Link to="/alumni" className="hover:text-blue transition-colors duration-200">Alumni</Link>
             {/* <a href="https://www.cse.ruet.ac.bd/login" className="hover:text-blue transition-colors duration-200">Login</a> */}
-            <Link to="/admin" onClick={toggleMenu} className="hover:text-blue transition-colors duration-200">Login</Link>
+            <Link to="/admin/login" onClick={toggleMenu} className="hover:text-blue transition-colors duration-200">Login</Link>
           </div>
         </nav>
       </div>

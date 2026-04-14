@@ -45,9 +45,9 @@ const HomeNoticeNews = () => {
           </div>
 
           <div>
-            {latestNews.map((item) => (
+            {latestNews.map((item, idx) => (
               <NewsEventsCard 
-                key={item.isoDate}
+                key={item.isoDate + idx}
                 imgURL={item.imgURL} 
                 date={item.date}
                 isoDate={item.isoDate}

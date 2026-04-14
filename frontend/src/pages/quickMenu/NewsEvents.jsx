@@ -1,25 +1,25 @@
 import { useState, useMemo, useEffect } from "react"
 
-import NewsEventsCard        from "../../components/quickMenu/ContentCard"
-import Breadcrumb            from "../../components/quickMenu/Breadcrumb"
-import PageHeroBanner        from "../../components/quickMenu/PageHeroBanner"
-import Pagination            from "../../components/quickMenu/Pagination"
-import ContentFilterSidebar  from "../../components/quickMenu/ContentFilterSidebar"
+import NewsEventsCard from "../../components/quickMenu/ContentCard"
+import Breadcrumb from "../../components/quickMenu/Breadcrumb"
+import PageHeroBanner from "../../components/quickMenu/PageHeroBanner"
+import Pagination from "../../components/quickMenu/Pagination"
+import ContentFilterSidebar from "../../components/quickMenu/ContentFilterSidebar"
 
-import { newsEvents }  from "../../constants/newsEventsData"
-import { SUB_NAV }     from "../../constants/navData"
-import searchIcon      from '../../assets/icons/search-icon.svg'
+import { newsEvents } from "../../constants/newsEventsData"
+import { SUB_NAV } from "../../constants/navData"
+import searchIcon from '../../assets/icons/search-icon.svg'
 
 // ── Constants ─────────────────────────────────────────────────────────────────
 
-const ITEMS_PER_PAGE     = 9
+const ITEMS_PER_PAGE = 9
 const DESKTOP_BREAKPOINT = 768
 
 // ── Component ─────────────────────────────────────────────────────────────────
 
 const NewsEvents = () => {
   const isDesktop = typeof window !== 'undefined' && window.innerWidth >= DESKTOP_BREAKPOINT
-  const [filterOpen,  setFilterOpen]  = useState(isDesktop)
+  const [filterOpen, setFilterOpen] = useState(isDesktop)
   const [currentPage, setCurrentPage] = useState(1)
 
   // Keep filterOpen in sync if window resizes across breakpoint
@@ -34,12 +34,12 @@ const NewsEvents = () => {
   }, [])
 
   // ── Filter state ──────────────────────────────────────────────────────────
-  const [searchInput,   setSearchInput]   = useState('')
-  const [fromDate,      setFromDate]      = useState('')
-  const [toDate,        setToDate]        = useState('')
+  const [searchInput, setSearchInput] = useState('')
+  const [fromDate, setFromDate] = useState('')
+  const [toDate, setToDate] = useState('')
   const [appliedSearch, setAppliedSearch] = useState('')
-  const [appliedFrom,   setAppliedFrom]   = useState('')
-  const [appliedTo,     setAppliedTo]     = useState('')
+  const [appliedFrom, setAppliedFrom] = useState('')
+  const [appliedTo, setAppliedTo] = useState('')
 
   // ── Filter logic ──────────────────────────────────────────────────────────
   const filteredItems = useMemo(() => {
@@ -47,17 +47,17 @@ const NewsEvents = () => {
       if (appliedSearch) {
         const q = appliedSearch.toLowerCase()
         const inTitle = item.title.toLowerCase().includes(q)
-        const inDesc  = item.description?.toLowerCase().includes(q)
+        const inDesc = item.description?.toLowerCase().includes(q)
         if (!inTitle && !inDesc) return false
       }
-      if (appliedFrom && item.isoDate < appliedFrom) return false
-      if (appliedTo   && item.isoDate > appliedTo)   return false
+      if (appliedFrom && new Date(item.createdAt) < new Date(appliedFrom)) return false
+      if (appliedTo && new Date(item.createdAt) > new Date(appliedTo)) return false
       return true
     })
   }, [appliedSearch, appliedFrom, appliedTo])
 
   const totalPages = Math.max(1, Math.ceil(filteredItems.length / ITEMS_PER_PAGE))
-  const safePage   = Math.min(currentPage, totalPages)
+  const safePage = Math.min(currentPage, totalPages)
 
   const currentItems = useMemo(() => {
     const start = (safePage - 1) * ITEMS_PER_PAGE
@@ -73,9 +73,9 @@ const NewsEvents = () => {
   }
 
   const handleReset = () => {
-    setSearchInput('');  setAppliedSearch('')
-    setFromDate('');     setAppliedFrom('')
-    setToDate('');       setAppliedTo('')
+    setSearchInput(''); setAppliedSearch('')
+    setFromDate(''); setAppliedFrom('')
+    setToDate(''); setAppliedTo('')
     setCurrentPage(1)
   }
 
@@ -94,8 +94,8 @@ const NewsEvents = () => {
       <div
         className="w-screen bg-white mb-10"
         style={{
-          paddingTop:   'clamp(2.5rem, 5vw, 6rem)',
-          paddingLeft:  'clamp(1rem, 7vw, 10rem)',
+          paddingTop: 'clamp(2.5rem, 5vw, 6rem)',
+          paddingLeft: 'clamp(1rem, 7vw, 10rem)',
           paddingRight: 'clamp(1rem, 7vw, 10rem)',
         }}
       >
@@ -168,7 +168,7 @@ const NewsEvents = () => {
 
               {/* Buttons */}
               <div className="flex gap-3">
-                <button onClick={handleReset}  className="py-1.5 px-4 text-blue border-2 border-blue text-sm font-poppins hover:bg-blue/10 transition-colors">Reset</button>
+                <button onClick={handleReset} className="py-1.5 px-4 text-blue border-2 border-blue text-sm font-poppins hover:bg-blue/10 transition-colors">Reset</button>
                 <button onClick={handleSearch} className="py-1.5 px-4 bg-blue text-white text-sm font-poppins hover:bg-blue/80 transition-colors">Search</button>
               </div>
 
@@ -200,16 +200,16 @@ const NewsEvents = () => {
               ) : (
                 <div
                   className="grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1"
-                  style={{ 
+                  style={{
                     gap: 'clamp(1.6rem, 2.8vw, 2.5rem) clamp(1.4rem, 2vw, 1.7rem)',
                   }}
                 >
-                  {currentItems.map((item, idx) => (
+                  {currentItems.map((item) => (
                     <NewsEventsCard
-                      key={idx}
+                      key={item._id}
                       imgURL={item.imgURL}
                       title={item.title}
-                      date={item.date}
+                      date={item.createdAt}
                       description={item.description}
                     />
                   ))}
