@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { ADMIN_ROUTES } from "../../constants/adminData"
-import formatDate from "../../utils/formatDate"
+import formatDate from '../../utils/formatdate'
 
 import noticeLogo from "../../assets/icons/noticeLogo.svg"
 import eventLogo from "../../assets/icons/eventLogo.svg"
