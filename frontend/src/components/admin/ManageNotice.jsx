@@ -137,12 +137,12 @@ const ManageNotice = () => {
         {/* Header */}
         <div className="flex items-center justify-between my-10 bg-white px-5 py-8 shadow-sm rounded-xl">
           <div>
-            <h1 className="text-3xl font-bold text-[#010F39] leading-tight mb-1">Notices</h1>
+            <h1 className="text-3xl font-bold text-dark-blue-2 leading-tight mb-1">Notices</h1>
             <p className="text-gray-400 text-sm">Add, Update or Delete Notice</p>
           </div>
           <button
             onClick={() => setShowAdd(true)}
-            className="flex items-center gap-2 bg-[#1A66FF] hover:bg-[#0040C1] text-white font-semibold text-sm px-5 py-2.5 rounded-lg transition-colors cursor-pointer"
+            className="flex items-center gap-2 bg-blue hover:bg-dark-blue-0 text-white font-semibold text-sm px-5 py-2.5 rounded-lg transition-colors cursor-pointer"
           >
             <span className="text-lg font-light">+</span> Add New Notice
           </button>
@@ -162,7 +162,7 @@ const ManageNotice = () => {
                     : 'bg-white border-gray-200 text-gray-500 hover:border-gray-300'
                   }`}
               >
-                <span className={`text-xl font-bold ${activeFilter === f ? 'text-[#010F39]' : 'text-gray-700'}`}>
+                <span className={`text-xl font-bold ${activeFilter === f ? 'text-dark-blue-2' : 'text-gray-700'}`}>
                   {count}
                 </span>
                 {f}

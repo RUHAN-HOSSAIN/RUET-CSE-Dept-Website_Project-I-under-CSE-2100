@@ -93,7 +93,7 @@ const UpdateNotice = ({ notice, setShowModal, onSuccess }) => {
               return (
                 <button key={cat} type="button" onClick={() => toggleCategory(cat)}
                   className={`px-4 py-1.5 rounded-full text-sm font-medium border transition-all cursor-pointer
-                    ${selected ? 'bg-[#1A66FF] text-white border-[#1A66FF]' : 'bg-white text-gray-600 border-gray-300 hover:border-blue-400'}`}
+                    ${selected ? 'bg-blue text-white border-blue' : 'bg-white text-gray-600 border-gray-300 hover:border-blue-400'}`}
                 >
                   {selected && <span className="mr-1">✓</span>}{cat}
                 </button>
@@ -144,7 +144,7 @@ const UpdateNotice = ({ notice, setShowModal, onSuccess }) => {
         <button
           onClick={handleSubmit}
           disabled={loading}
-          className="w-full bg-[#1A66FF] hover:bg-[#0040C1] disabled:opacity-60 text-white font-semibold text-sm py-2.5 rounded-lg transition-colors flex items-center justify-center gap-2 cursor-pointer"
+          className="w-full bg-blue hover:bg-dark-blue-0 disabled:opacity-60 text-white font-semibold text-sm py-2.5 rounded-lg transition-colors flex items-center justify-center gap-2 cursor-pointer"
         >
           {loading ? (
             <>
