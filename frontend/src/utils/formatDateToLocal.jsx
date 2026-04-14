@@ -1,5 +1,5 @@
 
-const formatDate = (isoDate) => {
+const formatDateToLocal = (isoDate) => {
   return new Date(isoDate).toLocaleDateString('en-GB', {
     day: '2-digit',
     month: 'long',
@@ -7,4 +7,4 @@ const formatDate = (isoDate) => {
   })
 }
 
-export default formatDate
+export default formatDateToLocal

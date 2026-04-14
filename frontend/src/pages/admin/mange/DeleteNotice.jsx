@@ -5,7 +5,7 @@ const DeleteNotice = ({ notice, setShowModal, onSuccess }) => {
   const [loading, setLoading] = useState(false)
   const [error, setError]     = useState('')
 
-  const formatDate = (d) => new Date(d).toLocaleDateString('en-GB', {
+  const formatDateToLocal = (d) => new Date(d).toLocaleDateString('en-GB', {
     day: '2-digit', month: 'short', year: 'numeric'
   })
 
@@ -49,8 +49,8 @@ const DeleteNotice = ({ notice, setShowModal, onSuccess }) => {
             ))}
           </div>
           <div className="text-xs text-gray-400 space-y-0.5 pt-1">
-            <p>Created: {formatDate(notice.createdAt)}</p>
-            <p>Updated: {formatDate(notice.updatedAt)}</p>
+            <p>Created: {formatDateToLocal(notice.createdAt)}</p>
+            <p>Updated: {formatDateToLocal(notice.updatedAt)}</p>
           </div>
         </div>
 

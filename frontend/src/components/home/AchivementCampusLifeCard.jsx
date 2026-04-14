@@ -1,4 +1,4 @@
-import formatDate from "../../utils/formatDate"
+import formatDateToLocal from "../../utils/formatDateToLocal"
 
 
 const AchivementCampusLifeCard = ({ imgURL, date, title, description }) => {
@@ -13,7 +13,7 @@ const AchivementCampusLifeCard = ({ imgURL, date, title, description }) => {
       </div>
 
       <div className="p-5 flex flex-col gap-3 flex-1">
-        <p className="text-blue text-sm sm:text-base">{formatDate(date)}</p>
+        <p className="text-blue text-sm sm:text-base">{formatDateToLocal(date)}</p>
         <h3 className="font-semibold text-md text-black/90 transition-colors duration-200 group-hover:text-orange-500 line-clamp-3 cursor-pointer">{title}</h3>
         <p className="text-gray-400 text-[13px] sm:text-sm line-clamp-3">{description}</p>
       </div>

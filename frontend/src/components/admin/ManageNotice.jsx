@@ -105,7 +105,7 @@ const ManageNotice = () => {
   }
 
   // ── Date format helper ─────────────────────────────────────────
-  const formatDate = (dateStr) => {
+  const formatDateToLocal = (dateStr) => {
     const d = new Date(dateStr)
     return d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })
   }
@@ -279,7 +279,7 @@ const ManageNotice = () => {
                         </span>
                       ))}
                       <span className="text-xs text-gray-400">
-                        Updated: {formatDate(n.updatedAt)}
+                        Updated: {formatDateToLocal(n.updatedAt)}
                       </span>
                     </div>
                   </div>

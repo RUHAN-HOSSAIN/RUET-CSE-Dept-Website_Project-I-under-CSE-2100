@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import formatDate from "../../utils/formatDate"
+import formatDateToLocal from "../../utils/formatDateToLocal"
 
 /**
  * NewsEventsCard
@@ -33,7 +33,7 @@ const NewsEventsCard = ({ imgURL, title, date, description }) => {
         <p
           className="text-dark-blue-0 font-medium"
           style={{ fontSize: 'clamp(0.8rem, 1vw, 0.95rem)' }}
-        >{formatDate(date)}</p>
+        >{formatDateToLocal(date)}</p>
 
         {/* Title */}
         <p
