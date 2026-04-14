@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { ADMIN_ROUTES } from "../../constants/adminData"
-import formatdate from "../../utils/formatdate"
+import formatDate from "../../utils/formatDate"
 
 import noticeLogo from "../../assets/icons/noticeLogo.svg"
 import eventLogo from "../../assets/icons/eventLogo.svg"
@@ -81,7 +81,7 @@ const DashboardBody = () => {
         </div>
         <div className="text-right">
           <p className="text-xs text-gray-400">Today</p>
-          <p className="text-sm font-semibold text-gray-700">{formatdate(new Date())}</p>
+          <p className="text-sm font-semibold text-gray-700">{formatDate(new Date())}</p>
         </div>
       </div>
 

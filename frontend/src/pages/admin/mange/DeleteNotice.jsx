@@ -35,7 +35,7 @@ const DeleteNotice = ({ notice, setShowModal, onSuccess }) => {
           </div>
         </div>
 
-        <h2 className="text-xl font-bold text-center text-[#010F39] mb-1">Delete Notice</h2>
+        <h2 className="text-xl font-bold text-center text-dark-blue-2 mb-1">Delete Notice</h2>
         <p className="text-sm text-gray-400 text-center mb-6">This action cannot be undone</p>
 
         {/* Notice info */}
