@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 
-const CATEGORIES = ['news', 'event']
+const CATEGORIES = ['News', 'Event']
 
 const newsEventSchema = new mongoose.Schema(
   {

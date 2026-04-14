@@ -29,6 +29,19 @@ export const getAchievements = async (req, res) => {
   }
 }
 
+export const getAchievementStats = async (req, res) => {
+  try {
+    const results = await Achievement.aggregate([
+      { $group: { _id: '$category', count: { $sum: 1 } } },
+    ])
+    const stats = {}
+    results.forEach(r => { stats[r._id] = r.count })
+    res.json(stats)
+  } catch (err) {
+    res.status(500).json({ message: err.message })
+  }
+}
+
 export const createAchievement = async (req, res) => {
   try {
     const { title, description, category } = req.body

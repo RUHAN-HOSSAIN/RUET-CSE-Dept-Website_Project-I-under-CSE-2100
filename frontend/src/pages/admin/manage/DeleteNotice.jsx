@@ -24,7 +24,7 @@ const DeleteNotice = ({ notice, setShowModal, onSuccess }) => {
 
   return (
     <div className="fixed top-0 left-0 w-full h-full z-10 flex items-center justify-center backdrop-blur-sm bg-black/30">
-      <div className="bg-white rounded-2xl shadow-2xl p-8 w-[420px]">
+      <div className="bg-white rounded-2xl shadow-2xl p-8 w-105">
 
         {/* Icon */}
         <div className="flex justify-center mb-4">

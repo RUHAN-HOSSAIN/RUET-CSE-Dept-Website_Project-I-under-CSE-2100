@@ -1,8 +1,8 @@
 
 import { useState } from 'react'
 import apiClient from '../../../api/apiClient'
+import { NOTICE_CATEGORIES } from '../../../constants/noticeData'
 
-const NOTICE_TYPES = ['Academic', 'Exam', 'Undergraduate', 'Postgraduate']
 
 const AddNotice = ({ setShowModal, onSuccess }) => {
   const [title, setTitle] = useState('')
@@ -99,7 +99,7 @@ const AddNotice = ({ setShowModal, onSuccess }) => {
             Category <span className="text-gray-400 font-normal">(select one or more)</span>
           </label>
           <div className="flex flex-wrap gap-2">
-            {NOTICE_TYPES.map(cat => {
+            {NOTICE_CATEGORIES.map(cat => {
               const selected = categories.includes(cat)
               return (
                 <button
@@ -108,7 +108,7 @@ const AddNotice = ({ setShowModal, onSuccess }) => {
                   onClick={() => toggleCategory(cat)}
                   className={`px-4 py-1.5 rounded-full text-sm font-medium border transition-all cursor-pointer
                     ${selected
-                      ? 'bg-[#1A66FF] text-white border-[#1A66FF]'
+                      ? 'bg-blue text-white border-blue'
                       : 'bg-white text-gray-600 border-gray-300 hover:border-blue-400'
                     }`}
                 >
@@ -181,7 +181,7 @@ const AddNotice = ({ setShowModal, onSuccess }) => {
         <button
           onClick={handleSubmit}
           disabled={loading}
-          className="w-full bg-[#1A66FF] hover:bg-[#0040C1] disabled:opacity-60 text-white font-semibold text-sm py-2.5 rounded-lg transition-colors flex items-center justify-center gap-2 cursor-pointer"
+          className="w-full bg-blue hover:bg-dark-blue-0 disabled:opacity-60 text-white font-semibold text-sm py-2.5 rounded-lg transition-colors flex items-center justify-center gap-2 cursor-pointer"
         >
           {loading ? (
             <>
@@ -199,40 +199,3 @@ const AddNotice = ({ setShowModal, onSuccess }) => {
 }
 
 export default AddNotice
-
-
-
-// import { NOTICE_TYPES } from "../../../constants/noticeData"
-
-
-// const AddNotice = ({setShowModal}) => {
-//   return (
-//     <div className='backdrop-blur-2xl fixed top-0 left-0 w-full h-full z-10'>
-//       <button onClick={() => setShowModal(false)} className="absolute top-8 right-8">
-//         <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#fff"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>
-//       </button>
-
-//       <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg shadow-lg p-10 w-[40vw]'>
-//         <h2 className='text-2xl font-bold mb-6 text-center'>Add New Notice</h2>
-//         <form className='flex flex-col gap-4'>
-//           <input type="text" placeholder='Notice Title' className='border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500' />
-//           <textarea placeholder='Notice Description' rows={4} className='border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500'></textarea>
-//           <div>
-//             <p className="text-black/70 font-bold">Select one/multiple Category</p>
-//             <div className="flex gap-2 mt-3">
-//               {NOTICE_TYPES.map((item) => (
-//                 <div className=" border border-blue px-3 py-1 rounded-4xl">
-//                   {item}
-//                 </div>
-//               ))}
-//             </div>
-//           </div>
-//           <input type="file" name="" id="" className="" />
-//           <button type='submit' className='bg-[#1A66FF] hover:bg-[#0040C1] text-white font-semibold text-sm mt-5 px-5 py-2 rounded-lg transition-colors'>Add Notice</button>
-//         </form>
-//       </div>
-//     </div>
-//   )
-// }
-
-// export default AddNotice

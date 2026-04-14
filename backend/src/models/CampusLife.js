@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 
-const CATEGORIES = ['sports', 'cultural', 'club', 'general']
+const CATEGORIES = ['Sports', 'Cultural', 'Club', 'General']
 
 const campusLifeSchema = new mongoose.Schema(
   {

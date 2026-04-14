@@ -3,9 +3,12 @@ import { useState, useEffect, useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import apiClient from '../../api/apiClient'
 import { NOTICE_CATEGORIES, NOTICE_FILTER_TYPES } from '../../constants/noticeData'
-import AddNotice from '../../pages/admin/mange/AddNotice'
-import UpdateNotice from '../../pages/admin/mange/UpdateNotice'
-import DeleteNotice from '../../pages/admin/mange/DeleteNotice'
+
+import formatDateToLocal from '../../utils/formatDateToLocal'
+
+import AddNotice from '../../pages/admin/manage/AddNotice'
+import UpdateNotice from '../../pages/admin/manage/UpdateNotice'
+import DeleteNotice from '../../pages/admin/manage/DeleteNotice'
 
 const LIMIT = 15
 
@@ -104,11 +107,6 @@ const ManageNotice = () => {
     fetchStats()
   }
 
-  // ── Date format helper ─────────────────────────────────────────
-  const formatDateToLocal = (dateStr) => {
-    const d = new Date(dateStr)
-    return d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })
-  }
 
   return (
     <div className="relative bg-slate-100 min-h-full w-full font-poppins">
@@ -129,7 +127,7 @@ const ManageNotice = () => {
           <svg xmlns="http://www.w3.org/2000/svg" height="18px" viewBox="0 -960 960 960" width="18px" fill="#4a5565">
             <path d="M520-600v-240h320v240H520ZM120-440v-400h320v400H120Zm400 320v-400h320v400H520Zm-400 0v-240h320v240H120Zm80-400h160v-240H200v240Zm400 320h160v-240H600v240Zm0-480h160v-80H600v80ZM200-200h160v-80H200v80Zm160-320Zm240-160Zm0 240ZM360-280Z"/>
           </svg>
-          <Link to="/admin/dashboard" className="text-sm text-gray-600 hover:text-blue font-medium">Dashboard</Link>
+          <Link to="/admin/dashboard" className=" text-gray-600 hover:text-blue font-medium">Dashboard</Link>
           &gt;
           <span className="text-blue font-medium">Notice Management</span>
         </div>
@@ -156,16 +154,16 @@ const ManageNotice = () => {
               <button
                 key={f}
                 onClick={() => handleCategoryFilter(f)}
-                className={`flex items-center gap-3 px-5 py-3 rounded-xl border text-sm font-medium transition-all cursor-pointer
+                className={`flex items-center gap-4 px-5 py-3 rounded-xl border text-sm font-medium transition-all cursor-pointer
                   ${activeFilter === f
                     ? 'bg-white border-blue text-blue shadow-sm'
                     : 'bg-white border-gray-200 text-gray-500 hover:border-gray-300'
                   }`}
               >
+                {f}
                 <span className={`text-xl font-bold ${activeFilter === f ? 'text-dark-blue-2' : 'text-gray-700'}`}>
                   {count}
                 </span>
-                {f}
               </button>
             )
           })}
@@ -268,7 +266,7 @@ const ManageNotice = () => {
                       href={n.pdfURL}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-sm font-medium hover:text-orange-400 transition-colors mb-1 block truncate"
+                      className="text-sm font-semibold hover:text-orange-400 transition-colors mb-1 block truncate"
                     >
                       {n.title}
                     </a>
@@ -350,4 +348,3 @@ const ManageNotice = () => {
 }
 
 export default ManageNotice
-

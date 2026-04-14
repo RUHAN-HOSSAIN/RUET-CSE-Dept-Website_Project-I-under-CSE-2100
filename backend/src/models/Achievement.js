@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 
-const CATEGORIES = ['faculty', 'student', 'department']
+const CATEGORIES = ['Faculty', 'Student', 'Department']
 
 const achievementSchema = new mongoose.Schema(
   {

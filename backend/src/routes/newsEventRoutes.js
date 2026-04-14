@@ -1,15 +1,12 @@
 import express from "express";
-import {
-  getNewsEvents,
-  createNewsEvent,
-  updateNewsEvent,
-  deleteNewsEvent,
-} from "../controllers/newsEventController.js";
+import { getNewsEvents, getNewsEventStats, createNewsEvent, updateNewsEvent, deleteNewsEvent } from '../controllers/newsEventController.js'
 import { upload } from "../config/cloudinary.js";
 import { protect } from "../middleware/authMiddleware.js";
 
+
 const router = express.Router();
 
+router.get('/stats', getNewsEventStats);
 router.get("/", getNewsEvents);
 router.post("/", upload.single("image"), createNewsEvent);
 router.put("/:id", upload.single("image"), updateNewsEvent);
