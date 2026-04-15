@@ -1,3 +1,9 @@
+/*
+  এচিভমেন্ট মডেল
+  - ফিল্ডসমূহ: title, description, category (enum), imgURL, imgPublicId
+  - timestamps সক্রিয় রয়েছে
+  - সার্চের জন্য title ও description-এ টেক্সট ইনডেক্স আছে
+*/
 import mongoose from 'mongoose'
 
 const CATEGORIES = ['Faculty', 'Student', 'Department']

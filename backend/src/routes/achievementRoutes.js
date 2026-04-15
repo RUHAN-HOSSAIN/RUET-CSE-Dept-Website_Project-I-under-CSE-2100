@@ -1,3 +1,8 @@
+/*
+  achievementRoutes.js — এচিভমেন্ট রিসোর্সের রুট
+  এন্ডপয়েন্টগুলো কন্ট্রোলার ফাংশনের সাথে ম্যাপ করা আছে।
+  অ্যাডমিন অপারেশনের জন্য `protect` মিডলওয়্যার এবং ছবি আপলোডের জন্য `upload` ব্যবহার করা হয়।
+*/
 import express from "express";
 import {
   getAchievements,

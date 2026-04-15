@@ -1,6 +1,18 @@
+/*
+  achievementController.js — এচিভমেন্ট সম্পর্কিত হ্যান্ডলার
+  এই ফাইলে এচিভমেন্ট রিসোর্সের CRUD অপারেশনগুলো আছে:
+  - তালিকা (পৃষ্ঠা বিভাজন, সার্চ, ক্যাটাগরি ও তারিখ ফিল্টার)
+  - আইডি অনুসারে একক আইটেম ফেরত দেওয়া
+  - পরিসংখ্যান (ক্যাটাগরি অনুযায়ী গণনা)
+  - তৈরি, আপডেট ও মুছে ফেলা (ছবি ব্যবস্থাপনা Cloudinary-র মাধ্যমে)
+*/
 import Achievement from '../models/Achievement.js'
 import { uploadToCloudinary, cloudinary } from '../config/cloudinary.js'
 
+/*
+  getAchievements: এচিভমেন্টের তালিকা প্রদান করে।
+  পেজিং, ফুল-টেক্সট সার্চ, ক্যাটাগরি ফিল্টার এবং তারিখ রেঞ্জ সাপোর্ট আছে।
+*/
 export const getAchievements = async (req, res) => {
   try {
     const { page = 1, limit = 12, search = '', category = '', from = '', to = '' } = req.query
@@ -30,6 +42,7 @@ export const getAchievements = async (req, res) => {
 }
 
 export const getAchievementById = async (req, res) => {
+  /* getAchievementById: আইডি অনুযায়ী একটি এচিভমেন্ট রেকর্ড ফেরত দেয়। */
   try {
     const item = await Achievement.findById(req.params.id).select('-imgPublicId')
     if (!item) return res.status(404).json({ message: 'Not found' })
@@ -40,6 +53,7 @@ export const getAchievementById = async (req, res) => {
 }
 
 export const getAchievementStats = async (req, res) => {
+  /* getAchievementStats: ক্যাটাগরি অনুযায়ী গণনা করে পরিসংখ্যান ফেরত দেয়। */
   try {
     const results = await Achievement.aggregate([
       { $group: { _id: '$category', count: { $sum: 1 } } },
@@ -53,6 +67,10 @@ export const getAchievementStats = async (req, res) => {
 }
 
 export const createAchievement = async (req, res) => {
+  /*
+    createAchievement: নতুন এচিভমেন্ট তৈরি করে।
+    ছবি আপলোড করতে Cloudinary হেল্পার ব্যবহার করা হয় এবং পরে ডাটাবেজে সংরক্ষণ করা হয়।
+  */
   try {
     const { title, description, category } = req.body
 
@@ -78,6 +96,10 @@ export const createAchievement = async (req, res) => {
 }
 
 export const updateAchievement = async (req, res) => {
+  /*
+    updateAchievement: বিদ্যমান এচিভমেন্ট আপডেট করে।
+    যদি নতুন ফাইল থাকে তবে পুরনো ছবি Cloudinary থেকে মুছে ফেলা হয়।
+  */
   try {
     const achievement = await Achievement.findById(req.params.id)
     if (!achievement) return res.status(404).json({ message: 'Achievement not found' })
@@ -108,6 +130,7 @@ export const updateAchievement = async (req, res) => {
 }
 
 export const deleteAchievement = async (req, res) => {
+  /* deleteAchievement: এচিভমেন্ট এবং সংশ্লিষ্ট ছবি মুছে ফেলে */
   try {
     const achievement = await Achievement.findById(req.params.id)
     if (!achievement) return res.status(404).json({ message: 'Achievement not found' })

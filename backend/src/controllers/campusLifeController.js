@@ -1,6 +1,14 @@
+/*
+  campusLifeController.js — ক্যাম্পাস লাইফ সম্পর্কিত হ্যান্ডলার
+  এই ফাইলে ক্যাম্পাস লাইফ এন্ট্রিগুলোর CRUD অপারেশন আছে। ছবির আপলোড ও ব্যবস্থাপনা Cloudinary দ্বারা করা হয়।
+*/
 import CampusLife from '../models/CampusLife.js'
 import { uploadToCloudinary, cloudinary } from '../config/cloudinary.js'
 
+/*
+  getCampusLifes: ক্যাম্পাস লাইফ এন্ট্রির তালিকা প্রদান করে।
+  পেজিং, সার্চ, ক্যাটাগরি ও তারিখ ফিল্টার সমর্থিত।
+*/
 export const getCampusLifes = async (req, res) => {
   try {
     const { page = 1, limit = 12, search = '', category = '', from = '', to = '' } = req.query
@@ -30,6 +38,7 @@ export const getCampusLifes = async (req, res) => {
 }
 
 export const getCampusLifeById = async (req, res) => {
+  /* getCampusLifeById: আইডি অনুযায়ী একটি ক্যাম্পাস লাইফ এন্ট্রি ফেরত দেয় */
   try {
     const item = await CampusLife.findById(req.params.id).select('-imgPublicId')
     if (!item) return res.status(404).json({ message: 'Not found' })
@@ -40,6 +49,7 @@ export const getCampusLifeById = async (req, res) => {
 }
 
 export const getCampusLifeStats = async (req, res) => {
+  /* getCampusLifeStats: ক্যাটাগরি অনুযায়ী গণনা করে পরিসংখ্যান দেয় */
   try {
     const results = await CampusLife.aggregate([
       { $group: { _id: '$category', count: { $sum: 1 } } },
@@ -53,6 +63,7 @@ export const getCampusLifeStats = async (req, res) => {
 }
 
 export const createCampusLife = async (req, res) => {
+  /* createCampusLife: নতুন ক্যাম্পাস লাইফ এন্ট্রি তৈরি করে; ছবি Cloudinary-তে আপলোড করা হয় */
   try {
     const { title, description, category } = req.body
 
@@ -78,6 +89,7 @@ export const createCampusLife = async (req, res) => {
 }
 
 export const updateCampusLife = async (req, res) => {
+  /* updateCampusLife: বিদ্যমান এন্ট্রি আপডেট করে; ছবি বদলে গেলে পুরনোটি মুছে ফেলা হয় */
   try {
     const campusLife = await CampusLife.findById(req.params.id)
     if (!campusLife) return res.status(404).json({ message: 'Campus life entry not found' })
@@ -108,6 +120,7 @@ export const updateCampusLife = async (req, res) => {
 }
 
 export const deleteCampusLife = async (req, res) => {
+  /* deleteCampusLife: এন্ট্রি এবং সংশ্লিষ্ট Cloudinary ছবি মুছে ফেলে */
   try {
     const campusLife = await CampusLife.findById(req.params.id)
     if (!campusLife) return res.status(404).json({ message: 'Campus life entry not found' })

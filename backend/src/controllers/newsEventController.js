@@ -1,7 +1,15 @@
+/*
+  newsEventController.js — নিউজ ও ইভেন্ট সম্পর্কিত হ্যান্ডলার
+  এই ফাইলে নিউজ/ইভেন্ট সম্পর্কিত CRUD এন্ডপয়েন্টগুলো আছে। ছবির আপলোড Cloudinary-দ্বারা করা হয়।
+*/
 import NewsEvent from '../models/NewsEvent.js'
 import { uploadToCloudinary, cloudinary } from '../config/cloudinary.js'
 
 // GET /api/news-events?page=1&limit=12&search=...&category=event&from=...&to=...
+/*
+  getNewsEvents: নিউজ/ইভেন্টের তালিকা প্রদান করে।
+  পেজিং, সার্চ, ক্যাটাগরি ও তারিখ ফিল্টার সমর্থিত।
+*/
 export const getNewsEvents = async (req, res) => {
   try {
     const {
@@ -50,6 +58,7 @@ export const getNewsEvents = async (req, res) => {
 
 // GET /api/news-events/stats
 export const getNewsEventStats = async (req, res) => {
+  /* getNewsEventStats: ক্যাটাগরি অনুযায়ী গণনা করে পরিসংখ্যান ফেরত দেয় */
   try {
     const results = await NewsEvent.aggregate([
       { $group: { _id: '$category', count: { $sum: 1 } } },
@@ -63,6 +72,7 @@ export const getNewsEventStats = async (req, res) => {
 }
 
 export const getNewsEventById = async (req, res) => {
+  /* getNewsEventById: আইডি অনুযায়ী একক রেকর্ড ফেরত দেয় */
   try {
     const item = await NewsEvent.findById(req.params.id).select('-imgPublicId')
     if (!item) return res.status(404).json({ message: 'Not found' })
@@ -75,6 +85,7 @@ export const getNewsEventById = async (req, res) => {
 
 // POST
 export const createNewsEvent = async (req, res) => {
+  /* createNewsEvent: নতুন নিউজ/ইভেন্ট তৈরি করে; ছবি Cloudinary-তে আপলোড করা হয় */
   try {
     const { title, description, category } = req.body
 
@@ -107,6 +118,7 @@ export const createNewsEvent = async (req, res) => {
 
 // PUT
 export const updateNewsEvent = async (req, res) => {
+  /* updateNewsEvent: রেকর্ড আপডেট করে; ছবি বদলে গেলে পুরনোটি মুছে ফেলা হয় */
   try {
     const newsEvent = await NewsEvent.findById(req.params.id)
     if (!newsEvent) return res.status(404).json({ message: 'News/Event not found' })
@@ -144,6 +156,7 @@ export const updateNewsEvent = async (req, res) => {
 
 // DELETE
 export const deleteNewsEvent = async (req, res) => {
+  /* deleteNewsEvent: রেকর্ড এবং সংশ্লিষ্ট Cloudinary ছবি মুছে ফেলে */
   try {
     const newsEvent = await NewsEvent.findById(req.params.id)
     if (!newsEvent) return res.status(404).json({ message: 'News/Event not found' })

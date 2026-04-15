@@ -1,3 +1,8 @@
+/*
+  app.js — Express অ্যাপ্লিকেশন কনফিগারেশন
+  এই ফাইলটিতে অ্যাপ-লেভেলের middleware, রেট-লিমিটার এবং API রুট নিবন্ধন করা আছে।
+  এই ফাইল কেবল অ্যাপ কনফিগার করে; সার্ভার `server.js` থেকে চালানো হয়।
+*/
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
@@ -15,12 +20,14 @@ import authRoutes from './routes/authRoutes.js'
 dotenv.config();
 const app = express();
 
+// সাধারণ রিকোয়েস্ট লিমিটার: API-তে অতিরিক্ত রিকোয়েস্ট থেকে সার্ভারকে রক্ষা করে
 const generalLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 মিনিট
   limit: 100,
   message: { message: 'Too many requests, please try again later' }
 })
 
+// অথেনটিকেশন-নির্দিষ্ট লিমিটার: লগইন প্রচেষ্টাগুলো সীমিত করে
 const authLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 মিনিট
   limit: 20,
@@ -31,11 +38,12 @@ const authLimiter = rateLimit({
 app.use(helmet());
 app.use(generalLimiter);
 app.use(express.json());
-// app.use(cors());
+// CORS origin পরিবেশভিত্তিক ভ্যারিয়েবল ব্যবহার করে কনফিগার করা হয়
 app.use(cors({
   origin: process.env.CORS_ORIGIN
 }))
 
+// রুট নিবন্ধন: পাবলিক ও অ্যাডমিন রুট
 app.use('/api/auth', authLimiter, authRoutes);
 app.use("/api/notices", noticeRoutes);
 app.use("/api/news-events", newsEventRoutes);

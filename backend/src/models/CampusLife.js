@@ -1,3 +1,8 @@
+/*
+  ক্যাম্পাস লাইফ মডেল
+  - ফিল্ডসমূহ: title, description, category (enum), imgURL, imgPublicId
+  - ইভেন্ট, ক্লাব, ক্রীড়া ইত্যাদি ক্যাম্পাস লাইফ পোস্টগুলোর জন্য ব্যবহার করা হয়
+*/
 import mongoose from 'mongoose'
 
 const CATEGORIES = ['Sports', 'Cultural', 'Club', 'General']

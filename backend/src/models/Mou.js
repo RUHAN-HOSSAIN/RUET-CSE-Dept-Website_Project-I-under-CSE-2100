@@ -1,3 +1,8 @@
+/*
+  MOU মডেল
+  - ফিল্ডসমূহ: title, description, imgURL, imgPublicId
+  - টাইমস্ট্যাম্পসহ MOU সম্পর্কিত এন্ট্রি সংরক্ষণ করে
+*/
 import mongoose from 'mongoose'
 
 const mouSchema = new mongoose.Schema(

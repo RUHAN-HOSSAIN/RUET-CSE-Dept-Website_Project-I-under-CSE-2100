@@ -1,6 +1,11 @@
+/*
+  mouController.js — মউ (MOU) সম্পর্কিত হ্যান্ডলার
+  এই ফাইলে MOU এন্ট্রিগুলোর CRUD অপারেশন আছে; ছবি ব্যবস্থাপনা Cloudinary-র মাধ্যমে করা হয়।
+*/
 import Mou from '../models/Mou.js'
 import { uploadToCloudinary, cloudinary } from '../config/cloudinary.js'
 
+/* getMous: MOU তালিকা প্রদান করে — পেজিং, সার্চ এবং ঐচ্ছিক তারিখ ফিল্টার সহ */
 export const getMous = async (req, res) => {
   try {
     const { page = 1, limit = 12, search = '', from = '', to = '' } = req.query
@@ -29,6 +34,7 @@ export const getMous = async (req, res) => {
 }
 
 export const getMouById = async (req, res) => {
+  /* getMouById: ID onujayi ekta MOU record return kore */
   try {
     const item = await Mou.findById(req.params.id).select('-imgPublicId')
     if (!item) return res.status(404).json({ message: 'Not found' })
@@ -39,6 +45,7 @@ export const getMouById = async (req, res) => {
 }
 
 export const createMou = async (req, res) => {
+  /* createMou: Notun MOU create kore; image Cloudinary te upload kore */
   try {
     const { title, description } = req.body
 
@@ -68,6 +75,7 @@ export const createMou = async (req, res) => {
 }
 
 export const updateMou = async (req, res) => {
+  /* updateMou: Existing MOU update kore; image replace korle purono delete kore */
   try {
     const mou = await Mou.findById(req.params.id)
     if (!mou) return res.status(404).json({ message: 'MOU not found' })
@@ -100,6 +108,7 @@ export const updateMou = async (req, res) => {
 }
 
 export const deleteMou = async (req, res) => {
+  /* deleteMou: MOU and its Cloudinary image delete kore */
   try {
     const mou = await Mou.findById(req.params.id)
     if (!mou) return res.status(404).json({ message: 'MOU not found' })

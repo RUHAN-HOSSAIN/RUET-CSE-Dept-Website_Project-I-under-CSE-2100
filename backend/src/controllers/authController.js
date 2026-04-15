@@ -1,5 +1,13 @@
+/*
+  authController.js — অথেনটিকেশন হ্যান্ডলার
+  এই ফাইলে অ্যাডমিন লগইনের সহজ হ্যান্ডলার আছে, যা পরিবেশভিত্তিক ক্রেডেনশিয়াল যাচাই করে JWT প্রদান করে।
+*/
 import jwt from 'jsonwebtoken'
 
+/*
+  adminLogin: অ্যাডমিনের ক্রেডেনশিয়াল যাচাই করে JWT টোকেন তৈরি করে ফেরত দেয়।
+  ক্রেডেনশিয়ালগুলো পরিবেশ ভ্যারিয়েবল (`ADMIN_USER_ID`, `ADMIN_PASSWORD`) থেকে নেয়া হয়।
+*/
 export const adminLogin = (req, res) => {
   const { userId, password } = req.body
 

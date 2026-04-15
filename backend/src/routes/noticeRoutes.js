@@ -1,3 +1,7 @@
+/*
+	noticeRoutes.js — নোটিশ রুটসমূহ
+	এখানে পাবলিক তালিকা এবং অ্যাডমিনের জন্য ক্রিয়েট/আপডেট/ডিলিট এন্ডপয়েন্ট আছে, PDF আপলোড সাপোর্টসহ।
+*/
 import express from "express";
 import { getNotices, getNoticeStats, createNotice, updateNotice, deleteNotice } from '../controllers/noticeController.js'
 

@@ -1,3 +1,8 @@
+/*
+  cloudinary.js — Cloudinary ও multer কনফিগারেশন
+  এই ফাইলটিতে Cloudinary ক্রেডেনশিয়াল ব্যবহার করে কনফিগার করা আছে,
+  `upload` (multer.memoryStorage) মিডেলওয়্যার এবং `uploadToCloudinary` হেল্পার প্রদান করা হয়েছে।
+*/
 import { v2 as cloudinary } from "cloudinary";
 import multer from "multer";
 import dotenv from "dotenv";
@@ -12,7 +17,7 @@ cloudinary.config({
 
 export const upload = multer({
   storage: multer.memoryStorage(),
-  limits: { fileSize: 10 * 1024 * 1024 }, // 10MB
+  limits: { fileSize: 10 * 1024 * 1024 }, // ১০MB
   fileFilter: (req, file, cb) => {
     const allowedTypes = [
       "application/pdf",

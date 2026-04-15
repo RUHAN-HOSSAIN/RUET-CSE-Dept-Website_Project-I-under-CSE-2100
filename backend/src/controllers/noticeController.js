@@ -1,8 +1,15 @@
+/*
+  noticeController.js — নোটিশ সম্পর্কিত হ্যান্ডলার
+  নোটিশ রিসোর্সের CRUD অপারেশনগুলো এখানে আছে। PDF-ফাইলগুলো Cloudinary (raw) হিসেবে সংরক্ষণ করা হয়।
+*/
 import Notice from "../models/Notice.js";
 import { uploadToCloudinary, cloudinary } from "../config/cloudinary.js";
 
-// ─── GET all — public ─────────────────────────────────────────────
+// ─── GET all — পাবলিক তালিকা ──────────────────────────────────────
 // GET /api/notices?page=1&limit=15&search=exam&category=Undergraduate&from=...&to=...
+/*
+  getNotices: নোটিশগুলোর তালিকা প্রদান করে — পেজিং, সার্চ, ক্যাটাগরি (অ্যারে) এবং তারিখ ফিল্টার সমর্থিত।
+*/
 export const getNotices = async (req, res) => {
   try {
     const {
@@ -53,6 +60,7 @@ export const getNotices = async (req, res) => {
 
 // GET /api/notices/stats
 export const getNoticeStats = async (req, res) => {
+  /* getNoticeStats: ক্যাটাগরি অনুযায়ী নোটিশের গণনা করে পরিসংখ্যান ফেরত দেয় */
   try {
     const results = await Notice.aggregate([
       { $unwind: '$category' },
@@ -67,8 +75,9 @@ export const getNoticeStats = async (req, res) => {
 }
 
 
-// ─── POST — admin ─────────────────────────────────────────────────
+// ─── POST — অ্যাডমিন ─────────────────────────────────────────────────
 export const createNotice = async (req, res) => {
+  /* createNotice: নতুন নোটিশ তৈরি করে। PDF Cloudinary-তে আপলোড করে এবং ক্যাটাগরি অ্যারে হ্যান্ডেল করে। */
   try {
     const { title, category } = req.body;
 
@@ -77,7 +86,7 @@ export const createNotice = async (req, res) => {
     if (!req.file)
       return res.status(400).json({ message: "PDF file is required" });
 
-    // category string বা array দুটোই handle করে
+    // ক্যাটাগরি স্ট্রিং বা অ্যারে উভয় ফরম্যাটই হ্যান্ডেল করে
     const categories = Array.isArray(category)
       ? category
       : [category].filter(Boolean);
@@ -106,15 +115,16 @@ export const createNotice = async (req, res) => {
   }
 };
 
-// ─── PUT — admin ──────────────────────────────────────────────────
+// ─── PUT — অ্যাডমিন ──────────────────────────────────────────────────
 export const updateNotice = async (req, res) => {
+  /* updateNotice: নোটিশ আপডেট করে। ক্যাটাগরি স্ট্রিং/অ্যারে উভয়ই সমর্থিত; PDF বদলালে পুরনো ফাইল মুছে ফেলা হয়। */
   try {
     const notice = await Notice.findById(req.params.id);
     if (!notice) return res.status(404).json({ message: "Notice not found" });
 
     const { title, category } = req.body;
     
-    // কিছুই না দিলে early return
+    // কিছুই না দিলে আগেভাগে রিটার্ন করে
     if (!title && !category && !req.file)
       return res.status(400).json({ message: 'Nothing to update' })
 
@@ -148,8 +158,9 @@ export const updateNotice = async (req, res) => {
   }
 };
 
-// ─── DELETE — admin ───────────────────────────────────────────────
+// ─── DELETE — অ্যাডমিন ───────────────────────────────────────────────
 export const deleteNotice = async (req, res) => {
+  /* deleteNotice: নোটিশ এবং তার Cloudinary raw ফাইল মুছে ফেলে */
   try {
     const notice = await Notice.findById(req.params.id);
     if (!notice) return res.status(404).json({ message: "Notice not found" });
