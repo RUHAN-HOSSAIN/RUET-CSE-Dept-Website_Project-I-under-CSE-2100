@@ -243,7 +243,7 @@ const ManageNotice = () => {
           {/* Notice rows */}
           <div className="divide-y divide-gray-50">
             {loading ? (
-              <div className="py-16 text-center text-gray-400 text-sm">Loading...</div>
+              <div className="py-16 text-center text-gray-400 text-sm animate-bounce">Loading...</div>
             ) : notices.length === 0 ? (
               <div className="py-16 text-center text-gray-400 text-sm">No notices found</div>
             ) : notices.map(n => {

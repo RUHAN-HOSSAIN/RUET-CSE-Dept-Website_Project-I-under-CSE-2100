@@ -193,7 +193,7 @@ const HomeCampusLife = () => {
         </div>
       </div>
 
-      <hr className="text-blue" />
+      {/* <hr className="text-blue" /> */}
     </>
   )
 }

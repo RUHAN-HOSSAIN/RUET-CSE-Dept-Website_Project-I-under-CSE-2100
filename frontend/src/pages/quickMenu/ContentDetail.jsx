@@ -49,7 +49,7 @@ const ContentDetail = ({
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-screen font-poppins text-gray-400 text-sm">
+      <div className="flex items-center justify-center min-h-screen font-poppins text-gray-400 text-sm animate-bounce">
         Loading...
       </div>
     )

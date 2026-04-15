@@ -13,7 +13,7 @@ const Home = () => {
       <HomeNoticeNews />
       <HomeAchivement />
       <HomeCampusLife />
-      <HomeLowerBody />
+      {/* <HomeLowerBody /> */}
     </>
   )
 }

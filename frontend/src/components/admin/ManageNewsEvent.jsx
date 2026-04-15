@@ -189,7 +189,7 @@ const ManageNewsEvent = () => {
           {/* Rows */}
           <div className="divide-y divide-gray-50">
             {loading ? (
-              <div className="py-16 text-center text-gray-400 text-sm">Loading...</div>
+              <div className="py-16 text-center text-gray-400 text-sm animate-bounce">Loading...</div>
             ) : items.length === 0 ? (
               <div className="py-16 text-center text-gray-400 text-sm">No items found</div>
             ) : items.map(item => (

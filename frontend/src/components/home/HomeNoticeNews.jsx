@@ -4,9 +4,6 @@ import { Link, useNavigate } from 'react-router-dom'
 import NewsEventsCard from './NewsEventsCard'
 import apiClient from '../../api/apiClient'
 
-import loadingSpin from '../../assets/gif/LoadingSpin.gif'
-import loadingDots from '../../assets/gif/LoadingDots.gif'
-
 const HomeNoticeNews = () => {
   const [selectedType, setSelectedType] = useState('All')
   const [dropdownOpen, setDropdownOpen] = useState(false)
@@ -79,8 +76,8 @@ const HomeNoticeNews = () => {
 
           <div>
             {loadingNews ? (
-              <div className="flex justify-center py-4">
-                <img src={loadingDots} alt="loading" className="w-40" />
+              <div className="flex justify-center py-4 text-gray-400 animate-bounce">
+                Loading...
               </div>
             ) : latestNews.map((item) => (
               <div
@@ -153,8 +150,8 @@ const HomeNoticeNews = () => {
 
             <ul>
               {loadingNotice ? (
-                <li className="flex justify-center py-4">
-                  <img src={loadingDots} alt="loading" className="w-40" />
+                <li className="flex justify-center py-4 text-white animate-bounce">
+                  Loading...
                 </li>
               ) : latestNotices.length === 0 ? (
                 <li className="text-white text-sm py-4 text-center opacity-70">No notices found</li>

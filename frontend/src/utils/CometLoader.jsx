@@ -1,3 +1,5 @@
+
+
 const CometLoader = ({ color = '#1A66FF' }) => {
   const id = 'comet-loader'
   return (

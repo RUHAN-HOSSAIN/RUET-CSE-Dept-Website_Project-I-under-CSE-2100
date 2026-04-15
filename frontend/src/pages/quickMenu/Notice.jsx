@@ -212,7 +212,7 @@ const Notice = () => {
             <div className="flex-1 min-w-0 relative border border-light-blue border-t-0">
               {loading ? (
                 <div className="flex items-center justify-center text-gray-blue py-20 font-poppins">
-                  <p className="text-sm">Loading...</p>
+                  <p className="text-sm animate-bounce">Loading...</p>
                 </div>
               ) : notices.length === 0 ? (
                 <div className="flex flex-col items-center justify-center text-gray-blue py-20 gap-3 font-poppins">

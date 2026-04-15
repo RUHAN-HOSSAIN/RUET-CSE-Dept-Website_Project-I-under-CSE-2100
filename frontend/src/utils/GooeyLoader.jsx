@@ -1,3 +1,4 @@
+
 const GooeyLoader = ({ color = '#1A66FF', size = 100 }) => {
   const id = 'gooey-loader'
   return (

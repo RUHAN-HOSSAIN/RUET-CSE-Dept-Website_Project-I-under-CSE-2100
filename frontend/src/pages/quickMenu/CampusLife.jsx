@@ -163,7 +163,7 @@ const CampusLife = () => {
             >
               {loading ? (
                 <div className="flex items-center justify-center text-gray-blue py-20 font-poppins">
-                  <p className="text-sm">Loading...</p>
+                  <p className="text-sm animate-bounce">Loading...</p>
                 </div>
               ) : items.length === 0 ? (
                 <div className="flex flex-col items-center justify-center text-gray-blue py-20 gap-3 font-poppins">
