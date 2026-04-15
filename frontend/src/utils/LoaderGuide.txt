@@ -1,0 +1,12 @@
+// Props না দিলে → #1A66FF (theme blue)
+<CometLoader />
+<FlipQuadLoader />
+<BlobLoader />
+<FoldLoader />
+<GooeyLoader />
+<ChasingDotsLoader />  // color1 + color2 আলাদা
+
+// Custom color
+<CometLoader color="#0040C1" />
+<BlobLoader color="#f97316" size={50} />
+<ChasingDotsLoader color1="#1A66FF" color2="#BBDCFF" />

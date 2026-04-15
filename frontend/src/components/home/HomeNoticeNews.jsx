@@ -4,15 +4,18 @@ import { Link, useNavigate } from 'react-router-dom'
 import NewsEventsCard from './NewsEventsCard'
 import apiClient from '../../api/apiClient'
 
+import loadingSpin from '../../assets/gif/LoadingSpin.gif'
+import loadingDots from '../../assets/gif/LoadingDots.gif'
+
 const HomeNoticeNews = () => {
   const [selectedType, setSelectedType] = useState('All')
   const [dropdownOpen, setDropdownOpen] = useState(false)
   const dropdownRef = useRef(null)
   const navigate = useNavigate()
 
-  const [latestNews, setLatestNews]       = useState([])
+  const [latestNews, setLatestNews] = useState([])
   const [latestNotices, setLatestNotices] = useState([])
-  const [loadingNews, setLoadingNews]     = useState(true)
+  const [loadingNews, setLoadingNews] = useState(true)
   const [loadingNotice, setLoadingNotice] = useState(true)
 
   // Close dropdown on outside click
@@ -76,7 +79,9 @@ const HomeNoticeNews = () => {
 
           <div>
             {loadingNews ? (
-              <p className="text-gray-400 text-sm">Loading...</p>
+              <div className="flex justify-center py-4">
+                <img src={loadingDots} alt="loading" className="w-40" />
+              </div>
             ) : latestNews.map((item) => (
               <div
                 key={item._id}
@@ -122,7 +127,7 @@ const HomeNoticeNews = () => {
                     viewBox="0 -960 960 960" fill="#fff"
                     className={`w-5 h-5 sm:w-6 sm:h-6 transition-transform duration-200 ${dropdownOpen ? 'rotate-180' : ''}`}
                   >
-                    <path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z"/>
+                    <path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z" />
                   </svg>
                 </div>
 
@@ -148,14 +153,16 @@ const HomeNoticeNews = () => {
 
             <ul>
               {loadingNotice ? (
-                <li className="text-white text-sm py-4 text-center opacity-70">Loading...</li>
+                <li className="flex justify-center py-4">
+                  <img src={loadingDots} alt="loading" className="w-40" />
+                </li>
               ) : latestNotices.length === 0 ? (
                 <li className="text-white text-sm py-4 text-center opacity-70">No notices found</li>
               ) : latestNotices.map((notice) => {
                 const d = new Date(notice.createdAt)
-                const noticeDay   = String(d.getDate()).padStart(2, '0')
+                const noticeDay = String(d.getDate()).padStart(2, '0')
                 const noticeMonth = d.toLocaleString('en', { month: 'short' })
-                const noticeYear  = d.getFullYear()
+                const noticeYear = d.getFullYear()
 
                 return (
                   <li key={notice._id} className='cursor-pointer text-white border-b border-white hover:border-orange-500 hover:text-orange-500'>
