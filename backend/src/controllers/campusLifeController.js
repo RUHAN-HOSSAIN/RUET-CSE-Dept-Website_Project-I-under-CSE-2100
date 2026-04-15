@@ -29,6 +29,15 @@ export const getCampusLifes = async (req, res) => {
   }
 }
 
+export const getCampusLifeById = async (req, res) => {
+  try {
+    const item = await CampusLife.findById(req.params.id).select('-imgPublicId')
+    if (!item) return res.status(404).json({ message: 'Not found' })
+    res.json(item)
+  } catch (err) {
+    res.status(500).json({ message: err.message })
+  }
+}
 
 export const getCampusLifeStats = async (req, res) => {
   try {
@@ -42,7 +51,6 @@ export const getCampusLifeStats = async (req, res) => {
     res.status(500).json({ message: err.message })
   }
 }
-
 
 export const createCampusLife = async (req, res) => {
   try {

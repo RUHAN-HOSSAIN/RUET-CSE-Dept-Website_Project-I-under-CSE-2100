@@ -121,26 +121,26 @@ const ManageNotice = () => {
         <DeleteNotice notice={deleteTarget} setShowModal={setDeleteTarget} onSuccess={refresh} />
       )}
 
-      <div className="px-20 py-10">
+      <div className="px-6 sm:px-10 md:px-15 lg:px-20 py-10">
         {/* Breadcrumb */}
         <div className="flex items-center gap-2 mb-2 text-gray-400">
           <svg xmlns="http://www.w3.org/2000/svg" height="18px" viewBox="0 -960 960 960" width="18px" fill="#4a5565">
             <path d="M520-600v-240h320v240H520ZM120-440v-400h320v400H120Zm400 320v-400h320v400H520Zm-400 0v-240h320v240H120Zm80-400h160v-240H200v240Zm400 320h160v-240H600v240Zm0-480h160v-80H600v80ZM200-200h160v-80H200v80Zm160-320Zm240-160Zm0 240ZM360-280Z"/>
           </svg>
-          <Link to="/admin/dashboard" className=" text-gray-600 hover:text-blue font-medium">Dashboard</Link>
+          <Link to="/admin/dashboard" className=" text-gray-600 hover:text-blue font-medium text-sm sm:text-base">Dashboard</Link>
           &gt;
-          <span className="text-blue font-medium">Notice Management</span>
+          <span className="text-blue font-medium  text-sm sm:text-base">Notice Management</span>
         </div>
 
         {/* Header */}
         <div className="flex items-center justify-between my-10 bg-white px-5 py-8 shadow-sm rounded-xl">
           <div>
-            <h1 className="text-3xl font-bold text-dark-blue-2 leading-tight mb-1">Notices</h1>
-            <p className="text-gray-400 text-sm">Add, Update or Delete Notice</p>
+            <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-dark-blue-2 leading-tight mb-1">Notices</h1>
+            <p className="text-gray-400 text-xs sm:text-sm">Add, Update or Delete Notice</p>
           </div>
           <button
             onClick={() => setShowAdd(true)}
-            className="flex items-center gap-2 bg-blue hover:bg-dark-blue-0 text-white font-semibold text-sm px-5 py-2.5 rounded-lg transition-colors cursor-pointer"
+            className="flex items-center gap-2 bg-blue hover:bg-dark-blue-0 text-white font-semibold text-xs sm:text-sm px-2.5 py-2 sm:px-5 sm:py-2.5 rounded-lg transition-colors cursor-pointer"
           >
             <span className="text-lg font-light">+</span> Add New Notice
           </button>
@@ -154,14 +154,14 @@ const ManageNotice = () => {
               <button
                 key={f}
                 onClick={() => handleCategoryFilter(f)}
-                className={`flex items-center gap-4 px-5 py-3 rounded-xl border text-sm font-medium transition-all cursor-pointer
+                className={`flex items-center gap-3 sm:gap-4 px-5 py-3 rounded-xl border text-sm font-medium transition-all cursor-pointer
                   ${activeFilter === f
                     ? 'bg-white border-blue text-blue shadow-sm'
                     : 'bg-white border-gray-200 text-gray-500 hover:border-gray-300'
                   }`}
               >
                 {f}
-                <span className={`text-xl font-bold ${activeFilter === f ? 'text-dark-blue-2' : 'text-gray-700'}`}>
+                <span className={`text-lg sm:text-xl font-bold ${activeFilter === f ? 'text-dark-blue-2' : 'text-gray-700'}`}>
                   {count}
                 </span>
               </button>
@@ -266,17 +266,17 @@ const ManageNotice = () => {
                       href={n.pdfURL}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-sm font-semibold hover:text-orange-400 transition-colors mb-1 block truncate"
+                      className="text-sm sm:text-base font-semibold hover:text-orange-400 transition-colors mb-1 block truncate"
                     >
                       {n.title}
                     </a>
                     <div className="flex items-center gap-2 flex-wrap">
                       {n.category.map(cat => (
-                        <span key={cat} className="text-xs text-gray-600">
+                        <span key={cat} className="text-xs text-gray-700">
                           {cat} •
                         </span>
                       ))}
-                      <span className="text-xs text-gray-400">
+                      <span className="text-xs text-gray-500">
                         Updated: {formatDateToLocal(n.updatedAt)}
                       </span>
                     </div>
@@ -308,9 +308,9 @@ const ManageNotice = () => {
 
           {/* Pagination */}
           {totalPages > 1 && (
-            <div className="flex items-center justify-between px-6 py-4 border-t border-gray-100">
+            <div className="flex flex-wrap gap-3 items-center justify-between px-6 py-4 border-t border-gray-100">
               <p className="text-xs text-gray-400">
-                Showing {(currentPage - 1) * LIMIT + 1}–{Math.min(currentPage * LIMIT, total)} of {total} notices
+                Showing {(currentPage - 1) * LIMIT + 1}-{Math.min(currentPage * LIMIT, total)} of {total} notices
               </p>
               <div className="flex items-center gap-1">
                 <button

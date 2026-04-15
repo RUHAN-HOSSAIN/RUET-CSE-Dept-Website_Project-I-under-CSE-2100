@@ -7,7 +7,7 @@ const AdminDashboard = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
 
   return (
-    <div className='flex w-screen h-screen overflow-hidden font-poppins'>
+    <div className='w-screen overflow-hidden font-poppins'>
 
       <DashboardSidebar
         isSidebarOpen={isSidebarOpen}
@@ -17,7 +17,7 @@ const AdminDashboard = () => {
       <div className='flex-1 flex flex-col overflow-hidden'>
 
         {/* Top bar */}
-        <div className='bg-blue flex items-center justify-between min-h-16 pl-10 pr-14 shrink-0'>
+        <div className='bg-blue flex items-center justify-between min-h-16 px-6 sm:pl-10 sm:pr-14 shrink-0'>
           {!isSidebarOpen && (
             <svg onClick={() => setIsSidebarOpen(true)} className='cursor-pointer'
               xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#fff">

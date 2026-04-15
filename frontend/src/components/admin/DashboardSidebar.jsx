@@ -23,15 +23,15 @@ const DashboardSidebar = ({ isSidebarOpen, setIsSidebarOpen }) => {
 
   return (
     <div
-      className='flex flex-col justify-between bg-white  overflow-hidden shrink-0 z-5'
-      style={{ 
-        width: isSidebarOpen ? '20%' : '0', transition: 'width 0.3s', 
+      className='fixed top-0 left-0 bottom-0 flex flex-col justify-between bg-white  overflow-hidden shrink-0 z-5'
+      style={{
+        width: isSidebarOpen ? '300px' : '0', transition: 'width 0.3s',
         boxShadow: isSidebarOpen ? '2px 0 5px rgba(0,0,0,0.3)' : 'none'
       }}
     >
-      <div className='p-8 w-[20vw]'>
+      <div className='p-6 pt-8 sm:p-8'>
         <div className='flex justify-between items-center border-b-2 border-blue pb-4'>
-          <h1 className='font-bold text-[22px] font-spaceG'>Admin Dashboard</h1>
+          <h1 className='font-bold text-xl sm:text-[22px] font-spaceG shrink-0'>Admin Dashboard</h1>
           <svg
             onClick={() => setIsSidebarOpen(false)}
             className='cursor-pointer shrink-0'
@@ -41,18 +41,21 @@ const DashboardSidebar = ({ isSidebarOpen, setIsSidebarOpen }) => {
           </svg>
         </div>
 
-      
+
 
         <nav className='mt-8'>
           <ul className='space-y-2'>
             {NAV_ITEMS.map((item) => (
               <li
                 key={item.path}
-                onClick={() => navigate(item.path)}
+                onClick={() => {
+                  navigate(item.path)
+                  setIsSidebarOpen(false)
+                }}
                 className={`rounded px-4 py-2 cursor-pointer transition-colors whitespace-nowrap
                   ${pathname === item.path
                     ? 'bg-blue text-white font-semibold'
-                    : 'hover:bg-light-blue hover:text-dark-blue-2 text-gray-700'
+                    : 'hover:bg-light-blue hover:text-black text-gray-700'
                   }`}
               >
                 {item.label}
@@ -62,7 +65,7 @@ const DashboardSidebar = ({ isSidebarOpen, setIsSidebarOpen }) => {
         </nav>
       </div>
 
-      <div className="m-8 border-t-2 border-blue pt-4 flex justify-between">
+      <div className="m-6 mb-8 sm:m-8 border-t-2 border-blue pt-4 flex justify-between">
         <div />
         <div
           onClick={handleLogout}

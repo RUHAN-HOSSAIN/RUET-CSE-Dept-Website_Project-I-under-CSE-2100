@@ -14,6 +14,8 @@ import Achievements from '../pages/quickMenu/Achievements'
 import CampusLife from '../pages/quickMenu/CampusLife'
 import MouCollaboration from '../pages/quickMenu/MouCollaboration'
 
+import ContentDetail from '../pages/quickMenu/ContentDetail'
+
 // import Contact          from '../pages/Contact'
 
 // import AboutCSE         from '../pages/about/AboutCSE'
@@ -87,9 +89,17 @@ const AppRoutes = () => {
 
         <Route path="/notice" element={<Notice />} />
         <Route path="/news-events" element={<NewsEvents />} />
+        <Route path="/news-events/:id" element={<ContentDetail apiEndpoint="/news-events" listResponseKey="newsEvents" listPath="/news-events" listLabel="News & Events" sidebarTitle="Recent Events" />} />
+        
         <Route path="/achievements" element={<Achievements />} />
+        <Route path="/achievements/:id" element={<ContentDetail apiEndpoint="/achievements" listResponseKey="achievements" listPath="/achievements" listLabel="Achievements" sidebarTitle="Recent Achievements" />} />
+
         <Route path="/campus-life" element={<CampusLife />} />
+        <Route path="/campus-life/:id" element={<ContentDetail apiEndpoint="/campus-life" listResponseKey="campusLifes" listPath="/campus-life" listLabel="Campus Life" sidebarTitle="More from Campus Life" />} />
+
         <Route path="/quickMenu/mou-collaboration" element={<MouCollaboration />} />
+        <Route path="/quickMenu/mou-collaboration/:id" element={<ContentDetail apiEndpoint="/mous" listResponseKey="mous" listPath="/quickMenu/mou-collaboration" listLabel="MOU & Collaboration" sidebarTitle="More Collaborations" />} />
+
 
         {/* <Route path="/contact" element={<Contact />} /> */}
 

@@ -94,7 +94,7 @@ const Header = () => {
           <div className="flex items-center" style={{ gap: 'clamp(0.4rem, 1vw, 0.75rem)' }}>
             <Link to="/" className="shrink-0">
               <img
-                src="/RUET-logo.png"
+                src="/RUET-logo.webp"
                 alt="ruet-logo"
                 className="cursor-pointer transition-all duration-300"
                 style={{

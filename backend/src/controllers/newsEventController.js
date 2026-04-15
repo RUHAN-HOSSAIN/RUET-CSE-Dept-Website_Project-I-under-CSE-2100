@@ -62,6 +62,16 @@ export const getNewsEventStats = async (req, res) => {
   }
 }
 
+export const getNewsEventById = async (req, res) => {
+  try {
+    const item = await NewsEvent.findById(req.params.id).select('-imgPublicId')
+    if (!item) return res.status(404).json({ message: 'Not found' })
+    res.json(item)
+  } catch (err) {
+    res.status(500).json({ message: err.message })
+  }
+}
+
 
 // POST
 export const createNewsEvent = async (req, res) => {

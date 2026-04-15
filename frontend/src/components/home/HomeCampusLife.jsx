@@ -2,7 +2,8 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { Link } from 'react-router-dom'
 
-import { campusLifeData } from '../../constants/homeData'
+import { useNavigate } from 'react-router-dom'
+import apiClient from '../../api/apiClient'
 import AchivementCampusLifeCard from './AchivementCampusLifeCard'
 
 const AUTO_SCROLL_MS = 3200
@@ -11,7 +12,7 @@ const AUTO_SCROLL_MS = 3200
 const getVisibleCount = (width) => {
   if (width >= 1280) return 4  // xl+
   if (width >= 1024) return 3  // lg+
-  if (width >= 580)  return 2  // sm+
+  if (width >= 580) return 2  // sm+
   return 1                     // <sm
 }
 
@@ -31,10 +32,15 @@ const useVisibleCount = () => {
 
 const HomeCampusLife = () => {
   const VISIBLE_COUNT = useVisibleCount()
+  const navigate = useNavigate()
 
-  const items = [...campusLifeData]
-    .sort((a, b) => new Date(b.isoDate) - new Date(a.isoDate))
-    .slice(0, 6)
+  const [items, setItems] = useState([])
+
+  useEffect(() => {
+    apiClient.get('/campus-life', { params: { page: 1, limit: 6 } })
+      .then(({ data }) => setItems(data.campusLifes || []))
+      .catch(console.error)
+  }, [])
 
   const total = items.length
   const extended = [...items, ...items.slice(0, VISIBLE_COUNT)]
@@ -160,10 +166,14 @@ const HomeCampusLife = () => {
                 key={index}
                 style={{ minWidth: `${cardWidthPct}%` }}
                 className='px-3 flex flex-col'
+                onClick={() => {
+                  const realIndex = index % total
+                  navigate(`/campus-life/${items[realIndex]?._id}`)
+                }}
               >
                 <AchivementCampusLifeCard
                   imgURL={item.imgURL}
-                  date={item.date}
+                  date={item.createdAt}   // ← createdAt
                   title={item.title}
                   description={item.description}
                 />

@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 
-const NOTICE_CATEGORIES = ['Academic','Administrative', 'Announcement', 'Exam', 'General', 'Undergraduate', 'Postgraduate']
+const NOTICE_CATEGORIES = ['Academic','Administrative', 'Admission', 'Announcement', 'Exam', 'General', 'Undergraduate', 'Postgraduate']
 
 const noticeSchema = new mongoose.Schema(
   {

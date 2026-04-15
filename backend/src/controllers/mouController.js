@@ -28,6 +28,16 @@ export const getMous = async (req, res) => {
   }
 }
 
+export const getMouById = async (req, res) => {
+  try {
+    const item = await Mou.findById(req.params.id).select('-imgPublicId')
+    if (!item) return res.status(404).json({ message: 'Not found' })
+    res.json(item)
+  } catch (err) {
+    res.status(500).json({ message: err.message })
+  }
+}
+
 export const createMou = async (req, res) => {
   try {
     const { title, description } = req.body

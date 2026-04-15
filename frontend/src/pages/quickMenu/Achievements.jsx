@@ -1,24 +1,26 @@
 
-import { useState, useMemo, useEffect } from "react"
+import { useState, useEffect } from "react"
+import { useNavigate } from "react-router-dom"
 
-import ContentCard           from "../../components/quickMenu/ContentCard"
-import Breadcrumb            from "../../components/quickMenu/Breadcrumb"
-import PageHeroBanner        from "../../components/quickMenu/PageHeroBanner"
-import Pagination            from "../../components/quickMenu/Pagination"
-import ContentFilterSidebar  from "../../components/quickMenu/ContentFilterSidebar"
+import ContentCard          from "../../components/quickMenu/ContentCard"
+import Breadcrumb           from "../../components/quickMenu/Breadcrumb"
+import PageHeroBanner       from "../../components/quickMenu/PageHeroBanner"
+import Pagination           from "../../components/quickMenu/Pagination"
+import ContentFilterSidebar from "../../components/quickMenu/ContentFilterSidebar"
 
-import { achievements } from "../../constants/achievementsData"
-import { SUB_NAV }      from "../../constants/navData"
-import searchIcon       from '../../assets/icons/search-icon.svg'
+import { SUB_NAV } from "../../constants/navData"
+import searchIcon  from '../../assets/icons/search-icon.svg'
+import apiClient   from '../../api/apiClient'
 
 // ── Constants ─────────────────────────────────────────────────────────────────
 
-const ITEMS_PER_PAGE     = 6
+const ITEMS_PER_PAGE     = 9
 const DESKTOP_BREAKPOINT = 768
 
 // ── Component ─────────────────────────────────────────────────────────────────
 
 const Achievements = () => {
+  const navigate  = useNavigate()
   const isDesktop = typeof window !== 'undefined' && window.innerWidth >= DESKTOP_BREAKPOINT
   const [filterOpen,  setFilterOpen]  = useState(isDesktop)
   const [currentPage, setCurrentPage] = useState(1)
@@ -40,27 +42,34 @@ const Achievements = () => {
   const [appliedFrom,   setAppliedFrom]   = useState('')
   const [appliedTo,     setAppliedTo]     = useState('')
 
-  // ── Filter logic ──────────────────────────────────────────────────────────
-  const filteredItems = useMemo(() => {
-    return achievements.filter(item => {
-      if (appliedSearch) {
-        const q = appliedSearch.toLowerCase()
-        if (!item.title.toLowerCase().includes(q) && !item.description?.toLowerCase().includes(q))
-          return false
+  // ── API state ─────────────────────────────────────────────────────────────
+  const [items,      setItems]      = useState([])
+  const [totalPages, setTotalPages] = useState(1)
+  const [loading,    setLoading]    = useState(false)
+
+  // ── Fetch ─────────────────────────────────────────────────────────────────
+  useEffect(() => {
+    const fetchItems = async () => {
+      setLoading(true)
+      try {
+        const params = { page: currentPage, limit: ITEMS_PER_PAGE }
+        if (appliedSearch) params.search = appliedSearch
+        if (appliedFrom)   params.from   = appliedFrom
+        if (appliedTo)     params.to     = appliedTo
+
+        const { data } = await apiClient.get('/achievements', { params })
+        setItems(data.achievements || [])
+        setTotalPages(data.totalPages || 1)
+      } catch (err) {
+        console.error('Failed to fetch achievements:', err)
+        setItems([])
+        setTotalPages(1)
+      } finally {
+        setLoading(false)
       }
-      if (appliedFrom && new Date(item.createdAt) < new Date(appliedFrom)) return false
-      if (appliedTo   && new Date(item.createdAt) > new Date(appliedTo))   return false
-      return true
-    })
-  }, [appliedSearch, appliedFrom, appliedTo])
-
-  const totalPages = Math.max(1, Math.ceil(filteredItems.length / ITEMS_PER_PAGE))
-  const safePage   = Math.min(currentPage, totalPages)
-
-  const currentItems = useMemo(() => {
-    const start = (safePage - 1) * ITEMS_PER_PAGE
-    return filteredItems.slice(start, start + ITEMS_PER_PAGE)
-  }, [filteredItems, safePage])
+    }
+    fetchItems()
+  }, [currentPage, appliedSearch, appliedFrom, appliedTo])
 
   // ── Handlers ──────────────────────────────────────────────────────────────
   const handleSearch = () => {
@@ -80,13 +89,9 @@ const Achievements = () => {
   // ── Render ────────────────────────────────────────────────────────────────
   return (
     <>
-      <Breadcrumb current="Achievements" />
+      <Breadcrumb paths={[{ label: "Achievements" }]} />
 
-      <PageHeroBanner
-        title="Achievements"
-        navLinks={SUB_NAV}
-        activeTo="/achievements"
-      />
+      <PageHeroBanner title="Achievements" navLinks={SUB_NAV} activeTo="/achievements" />
 
       <div
         className="w-screen bg-white mb-10"
@@ -109,11 +114,8 @@ const Achievements = () => {
               style={{ fontSize: 'clamp(0.9rem, 1.2vw, 1.125rem)' }}
             >
               <span className="sm:inline hidden">Search /</span> Filter
-              <svg
-                xmlns="http://www.w3.org/2000/svg" height="24px" width="24px"
-                viewBox="0 -960 960 960" fill="#fff"
-                className={`${filterOpen ? 'rotate-180' : 'rotate-0'} transition-transform duration-300`}
-              >
+              <svg xmlns="http://www.w3.org/2000/svg" height="24px" width="24px" viewBox="0 -960 960 960" fill="#fff"
+                className={`${filterOpen ? 'rotate-180' : 'rotate-0'} transition-transform duration-300`}>
                 <path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z" />
               </svg>
             </p>
@@ -121,17 +123,14 @@ const Achievements = () => {
 
           {/* ── Mobile Filter Drawer ── */}
           <div className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out border border-light-blue border-t-0 bg-[#F5FAFF] ${filterOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0 border-0'}`}>
-            <div className="p-4 flex flex-col gap-3">
+            <div className="p-4 flex flex-col gap-3 font-poppins">
               <div>
                 <h2 className="font-semibold text-sm text-gray-blue mb-1.5">Title / Keyword</h2>
                 <div className="relative flex items-center bg-white border border-blue rounded-full">
-                  <input
-                    type="text" placeholder="Search"
-                    value={searchInput}
+                  <input type="text" placeholder="Search" value={searchInput}
                     onChange={e => setSearchInput(e.target.value)}
                     onKeyDown={e => e.key === 'Enter' && handleSearch()}
-                    className="py-1.5 pl-3 pr-8 w-full text-sm font-medium outline-none text-black/65 rounded-full"
-                  />
+                    className="py-1.5 pl-3 pr-8 w-full text-sm font-medium outline-none text-black/65 rounded-full" />
                   <img src={searchIcon} className="absolute right-3 w-4" alt="search" />
                 </div>
               </div>
@@ -158,28 +157,33 @@ const Achievements = () => {
 
           {/* ── Card Grid + Desktop Sidebar ── */}
           <div className="flex gap-0">
-            <div className="flex-1 min-w-0 border border-light-blue border-t-0"
-              style={{ padding: currentItems.length === 0 ? undefined : 'clamp(1.25rem, 3vw, 3rem) clamp(1rem, 3vw, 3rem)' }}
+            <div
+              className="flex-1 min-w-0 border border-light-blue border-t-0"
+              style={{ padding: (!loading && items.length === 0) ? undefined : 'clamp(1.25rem, 3vw, 3rem) clamp(1rem, 3vw, 3rem)' }}
             >
-              {currentItems.length === 0 ? (
+              {loading ? (
+                <div className="flex items-center justify-center text-gray-blue py-20 font-poppins">
+                  <p className="text-sm">Loading...</p>
+                </div>
+              ) : items.length === 0 ? (
                 <div className="flex flex-col items-center justify-center text-gray-blue py-20 gap-3 font-poppins">
                   <p className="font-medium text-lg">No results found</p>
                   <p className="text-sm">Try adjusting your search or date filters</p>
                   <button onClick={handleReset} className="mt-1 text-blue border border-blue px-4 py-1.5 text-sm hover:bg-blue/10 transition-colors">Clear Filters</button>
                 </div>
               ) : (
-                <div
-                  className="grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1"
-                  style={{ gap: 'clamp(1.7rem, 3vw, 2.5rem) clamp(1.4rem, 2vw, 2rem)' }}
-                >
-                  {currentItems.map((item) => (
-                    <ContentCard
-                      key={item._id}
-                      imgURL={item.imgURL}
-                      title={item.title}
-                      date={item.createdAt}
-                      description={item.description}
-                    />
+                <div className="grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1"
+                  style={{ gap: 'clamp(1.6rem, 2.8vw, 2.5rem) clamp(1.4rem, 2vw, 1.7rem)' }}>
+                  {items.map((item) => (
+                    <div key={item._id} onClick={() => navigate(`/achievements/${item._id}`)} className="cursor-pointer">
+                      <ContentCard
+                        imgURL={item.imgURL}
+                        title={item.title}
+                        date={item.createdAt}
+                        category={item.category}
+                        description={item.description}
+                      />
+                    </div>
                   ))}
                 </div>
               )}
@@ -194,7 +198,7 @@ const Achievements = () => {
           </div>
         </div>
 
-        <Pagination currentPage={safePage} totalPages={totalPages} onPageChange={setCurrentPage} />
+        <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage} />
       </div>
     </>
   )
@@ -206,12 +210,13 @@ export default Achievements
 
 // import { useState, useMemo, useEffect } from "react"
 
-// import ContentCard        from "../../components/quickMenu/ContentCard"
+// import ContentCard           from "../../components/quickMenu/ContentCard"
 // import Breadcrumb            from "../../components/quickMenu/Breadcrumb"
 // import PageHeroBanner        from "../../components/quickMenu/PageHeroBanner"
 // import Pagination            from "../../components/quickMenu/Pagination"
 // import ContentFilterSidebar  from "../../components/quickMenu/ContentFilterSidebar"
 
+// import { ACHIEVEMENT_CATEGORIES, ACHIEVEMENT_FILTER_TYPES } from '../../constants/achievementsData'
 // import { achievements } from "../../constants/achievementsData"
 // import { SUB_NAV }      from "../../constants/navData"
 // import searchIcon       from '../../assets/icons/search-icon.svg'
@@ -253,8 +258,8 @@ export default Achievements
 //         if (!item.title.toLowerCase().includes(q) && !item.description?.toLowerCase().includes(q))
 //           return false
 //       }
-//       if (appliedFrom && item.isoDate < appliedFrom) return false
-//       if (appliedTo   && item.isoDate > appliedTo)   return false
+//       if (appliedFrom && new Date(item.createdAt) < new Date(appliedFrom)) return false
+//       if (appliedTo   && new Date(item.createdAt) > new Date(appliedTo))   return false
 //       return true
 //     })
 //   }, [appliedSearch, appliedFrom, appliedTo])
@@ -285,7 +290,11 @@ export default Achievements
 //   // ── Render ────────────────────────────────────────────────────────────────
 //   return (
 //     <>
-//       <Breadcrumb current="Achievements" />
+//       <Breadcrumb
+//         paths={[
+//           { label: "Achievements" }
+//         ]}
+//       />
 
 //       <PageHeroBanner
 //         title="Achievements"
@@ -373,13 +382,19 @@ export default Achievements
 //                   <button onClick={handleReset} className="mt-1 text-blue border border-blue px-4 py-1.5 text-sm hover:bg-blue/10 transition-colors">Clear Filters</button>
 //                 </div>
 //               ) : (
-//                 <div 
-//                   className="grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1" 
-//                   style={{ 
-//                     gap: 'clamp(1.7rem, 3vw, 2.5rem) clamp(1.4rem, 2vw, 2rem)' 
-//                   }}>
-//                   {currentItems.map((item, idx) => (
-//                     <ContentCard key={idx} imgURL={item.imgURL} title={item.title} date={item.date} description={item.description} />
+//                 <div
+//                   className="grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1"
+//                   style={{ gap: 'clamp(1.7rem, 3vw, 2.5rem) clamp(1.4rem, 2vw, 2rem)' }}
+//                 >
+//                   {currentItems.map((item) => (
+//                     <ContentCard
+//                       key={item._id}
+//                       imgURL={item.imgURL}
+//                       title={item.title}
+//                       date={item.createdAt}
+//                       category={item.category}
+//                       description={item.description}
+//                     />
 //                   ))}
 //                 </div>
 //               )}

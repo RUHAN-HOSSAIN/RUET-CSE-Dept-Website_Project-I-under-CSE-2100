@@ -53,10 +53,10 @@ const UpdateNotice = ({ notice, setShowModal, onSuccess }) => {
   }
 
   return (
-    <div className="backdrop-blur-2xl fixed top-0 left-0 w-full h-full z-10 flex items-center justify-center">
+    <div className="px-5 py-10 backdrop-blur-2xl fixed top-0 left-0 w-full h-full z-10 flex items-center justify-center">
 
       <div className="bg-white rounded-2xl shadow-2xl p-8 w-120 max-h-[90vh] overflow-y-auto">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between gap-2">
           <h2 className="text-2xl font-bold text-dark-blue-2 font-spaceG">Update Notice</h2>
           <button
             onClick={() => setShowModal(false)}
@@ -68,7 +68,7 @@ const UpdateNotice = ({ notice, setShowModal, onSuccess }) => {
           </button>
         </div>
         
-        <p className="text-xs text-gray-400 mb-6">Leave PDF empty to keep the existing file</p>
+        <p className="text-xs text-orange-400 mb-6">Leave PDF empty to keep the existing file</p>
 
         {/* Title */}
         <div className="mb-4">
@@ -92,7 +92,7 @@ const UpdateNotice = ({ notice, setShowModal, onSuccess }) => {
               const selected = categories.includes(cat)
               return (
                 <button key={cat} type="button" onClick={() => toggleCategory(cat)}
-                  className={`px-4 py-1.5 rounded-full text-sm font-medium border transition-all cursor-pointer
+                  className={`px-4 py-1.5 rounded-full text-xs sm:text-sm font-medium border transition-all cursor-pointer
                     ${selected ? 'bg-blue text-white border-blue' : 'bg-white text-gray-600 border-gray-300 hover:border-blue-400'}`}
                 >
                   {selected && <span className="mr-1">✓</span>}{cat}

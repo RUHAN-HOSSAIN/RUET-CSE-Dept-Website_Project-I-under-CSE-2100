@@ -61,9 +61,7 @@ const AddNotice = ({ setShowModal, onSuccess }) => {
   }
 
   return (
-    <div className="backdrop-blur-2xl fixed top-0 left-0 w-full h-full z-10 flex items-center justify-center">
-
-
+    <div className="px-5 py-10 backdrop-blur-2xl fixed top-0 left-0 w-full h-full z-10 flex items-center justify-center">
 
       {/* Modal */}
       <div className="bg-white rounded-2xl shadow-2xl p-8 w-120 max-h-[90vh] overflow-y-auto">
@@ -82,8 +80,8 @@ const AddNotice = ({ setShowModal, onSuccess }) => {
         </div>
 
         {/* Title */}
-        <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700 mb-1.5">Notice Title</label>
+        <div className="mb-5">
+          <label className="block text-sm font-medium text-gray-800 mb-2">Notice Title</label>
           <input
             type="text"
             value={title}
@@ -95,8 +93,8 @@ const AddNotice = ({ setShowModal, onSuccess }) => {
 
         {/* Category */}
         <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Category <span className="text-gray-400 font-normal">(select one or more)</span>
+          <label className="block text-sm font-medium text-gray-800 mb-2">
+            Category <span className="text-gray-500 font-normal">(select one or more)</span>
           </label>
           <div className="flex flex-wrap gap-2">
             {NOTICE_CATEGORIES.map(cat => {
@@ -106,7 +104,7 @@ const AddNotice = ({ setShowModal, onSuccess }) => {
                   key={cat}
                   type="button"
                   onClick={() => toggleCategory(cat)}
-                  className={`px-4 py-1.5 rounded-full text-sm font-medium border transition-all cursor-pointer
+                  className={`px-4 py-1.5 rounded-full text-xs sm:text-sm font-medium border transition-all cursor-pointer
                     ${selected
                       ? 'bg-blue text-white border-blue'
                       : 'bg-white text-gray-600 border-gray-300 hover:border-blue-400'
@@ -122,7 +120,7 @@ const AddNotice = ({ setShowModal, onSuccess }) => {
 
         {/* File Upload */}
         <div className="mb-5">
-          <label className="block text-sm font-medium text-gray-700 mb-2">PDF File</label>
+          <label className="block text-sm font-medium text-gray-800 mb-2">PDF File</label>
           <div
             onDragOver={e => { e.preventDefault(); setDragOver(true) }}
             onDragLeave={() => setDragOver(false)}

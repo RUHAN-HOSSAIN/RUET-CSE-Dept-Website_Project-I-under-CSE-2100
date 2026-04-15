@@ -1,29 +1,34 @@
 // Sec-1: Hero Section
+import Hero_0 from '../assets/heroBanner/HeroPic-0.webp'
+import Hero_1 from '../assets/heroBanner/HeroPic-1.webp'
+import Hero_2 from '../assets/heroBanner/HeroPic-2.webp'
+import Hero_3 from '../assets/heroBanner/HeroPic-3.webp'
+import Hero_4 from '../assets/heroBanner/HeroPic-4.webp'
 
 export const heroSlides = [
   {
-    img: "/demoPhoto/HeroPic-0.webp",
+    img: Hero_0,
     title: "Shaping the Future of Technology",
     subtitle: "World-class education in Computer Science & Engineering at RUET",
   },
   {
-    img: "/demoPhoto/HeroPic-1.webp",
+    img: Hero_1,
     title: "Research That Changes the World",
     subtitle:
       "Explore cutting-edge labs, projects, and publications from our faculty and students",
   },
   {
-    img: "/demoPhoto/HeroPic-2.webp",
+    img: Hero_2,
     title: "Join a Community of Innovators",
     subtitle: 'From admission to graduation — we prepare you for what comes next',
   },
   {
-    img: "/demoPhoto/HeroPic-3.jpg",
+    img: Hero_3,
     title: "Research That Changes the World",
     subtitle: "Explore cutting-edge labs, projects, and publications from our faculty and students",
   },
   {
-    img: "/demoPhoto/HeroPic-4.jpg",
+    img: Hero_4,
     title: "Research That Changes the World",
     subtitle:
       "Explore cutting-edge labs, projects, and publications from our faculty and students",
@@ -306,6 +311,10 @@ export const achivementData = [
     description: "A group of RUET CSE students captured first place at the NASA International Space Apps Challenge, Dhaka Hub, with their project on satellite imagery analysis for flood prediction using convolutional neural networks. The team advanced to the global judging round, representing Bangladesh among the top 40 projects worldwide.",
   }
 ];
+
+
+// Sec-5: Campus Life Section
+
 
 export const campusLifeData = [
   {

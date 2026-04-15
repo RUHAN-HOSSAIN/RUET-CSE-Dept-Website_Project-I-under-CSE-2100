@@ -41,35 +41,38 @@ const AddItem = ({ heading, endpoint, categories, inputId, setShowModal, onSucce
   }
 
   return (
-    <div className="backdrop-blur-2xl fixed top-0 left-0 w-full h-full z-10 flex items-center justify-center">
+    <div className="px-5 py-10 backdrop-blur-2xl fixed top-0 left-0 w-full h-full z-10 flex items-center justify-center font-poppins">
       <div className="bg-white rounded-2xl shadow-2xl p-8 w-120 max-h-[90vh] overflow-y-auto">
 
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-2xl font-bold text-dark-blue-2">Add {heading}</h2>
+          <h2 className="text-2xl font-spaceG font-bold text-dark-blue-2">Add {heading}</h2>
           <button onClick={() => setShowModal(false)} className="p-1.5 hover:bg-gray-100 rounded-full transition-colors cursor-pointer">
             <svg xmlns="http://www.w3.org/2000/svg" height="22px" viewBox="0 -960 960 960" width="22px" fill="#6b7280"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>
           </button>
         </div>
 
+        {/* Title */}
         <div className="mb-4">
           <label className="block text-sm font-medium text-gray-700 mb-1.5">Title</label>
           <input type="text" value={title} onChange={e => setTitle(e.target.value)} placeholder="Enter title"
             className="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition"/>
         </div>
 
+        {/* Description */}
         <div className="mb-4">
           <label className="block text-sm font-medium text-gray-700 mb-1.5">Description</label>
           <textarea value={description} onChange={e => setDescription(e.target.value)} placeholder="Enter description" rows={4}
             className="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition resize-none"/>
         </div>
 
+        {/* Category */}
         {categories && (
           <div className="mb-4">
             <label className="block text-sm font-medium text-gray-700 mb-2">Category</label>
             <div className="flex flex-wrap gap-2">
               {categories.map(cat => (
                 <button key={cat} type="button" onClick={() => setCategory(cat)}
-                  className={`px-4 py-1.5 rounded-full text-sm font-medium border transition-all cursor-pointer
+                  className={`px-4 py-1.5 rounded-full text-xs sm:text-sm font-medium border transition-all cursor-pointer
                     ${category === cat ? 'bg-blue text-white border-blue' : 'bg-white text-gray-600 border-gray-300 hover:border-blue-400'}`}>
                   {category === cat && <span className="mr-1">✓</span>}{cat}
                 </button>

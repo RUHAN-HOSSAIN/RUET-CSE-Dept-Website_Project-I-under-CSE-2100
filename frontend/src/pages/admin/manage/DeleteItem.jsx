@@ -20,7 +20,7 @@ const DeleteItem = ({ heading, endpoint, item, setShowModal, onSuccess }) => {
   }
 
   return (
-    <div className="fixed top-0 left-0 w-full h-full z-10 flex items-center justify-center backdrop-blur-sm bg-black/30">
+    <div className="fixed top-0 left-0 w-full h-full p-5 z-10 flex items-center justify-center backdrop-blur-sm bg-black/30">
       <div className="bg-white rounded-2xl shadow-2xl p-8 w-105">
         <div className="flex justify-center mb-4">
           <div className="w-14 h-14 rounded-full bg-red-50 flex items-center justify-center">
@@ -31,14 +31,14 @@ const DeleteItem = ({ heading, endpoint, item, setShowModal, onSuccess }) => {
         </div>
 
         <h2 className="text-xl font-bold text-center text-dark-blue-2 mb-1">Delete {heading}</h2>
-        <p className="text-sm text-gray-400 text-center mb-6">This action cannot be undone</p>
+        <p className="text-sm text-red-500 text-center mb-6">This action cannot be undone</p>
 
         <div className="bg-slate-50 rounded-xl p-4 mb-6 flex gap-4">
           <img src={item.imgURL} alt={item.title} className="w-16 h-16 object-cover rounded-lg shrink-0"/>
           <div className="space-y-1.5">
-            <p className="text-sm font-semibold text-gray-800 line-clamp-2">{item.title}</p>
+            <p className="text-sm sm:text-base font-semibold text-gray-800 line-clamp-2">{item.title}</p>
             {item.category && (
-              <span className="text-[10px] font-semibold text-blue border border-blue/30 bg-blue/5 px-2 py-0.5 rounded-full">
+              <span className="text-sm text-gray-800">
                 {item.category}
               </span>
             )}

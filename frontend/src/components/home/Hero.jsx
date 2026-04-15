@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
 
-import { heroSlides } from '../../constants/homeData' 
+import { heroSlides } from '../../constants/homeData'
 
 const Hero = () => {
   const [current, setCurrent]       = useState(0)

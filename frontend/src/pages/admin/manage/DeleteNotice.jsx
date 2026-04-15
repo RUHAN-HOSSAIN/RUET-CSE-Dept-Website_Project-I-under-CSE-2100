@@ -23,8 +23,8 @@ const DeleteNotice = ({ notice, setShowModal, onSuccess }) => {
   }
 
   return (
-    <div className="fixed top-0 left-0 w-full h-full z-10 flex items-center justify-center backdrop-blur-sm bg-black/30">
-      <div className="bg-white rounded-2xl shadow-2xl p-8 w-105">
+    <div className="fixed top-0 left-0 p-5 w-full h-full z-10 flex items-center justify-center backdrop-blur-sm bg-black/30">
+      <div className="bg-white rounded-2xl shadow-2xl p-5 sm:p-10 sm:min-w-105 max-w-150">
 
         {/* Icon */}
         <div className="flex justify-center mb-4">
@@ -40,10 +40,10 @@ const DeleteNotice = ({ notice, setShowModal, onSuccess }) => {
 
         {/* Notice info */}
         <div className="bg-slate-50 rounded-xl p-4 mb-6 space-y-2">
-          <p className="text-sm font-semibold text-gray-800 line-clamp-2">{notice.title}</p>
+          <p className=" font-semibold text-gray-800 line-clamp-2">{notice.title}</p>
           <div className="flex flex-wrap gap-1.5">
             {notice.category.map(cat => (
-              <span key={cat} className="text-[10px] font-semibold text-blue border border-blue/30 bg-blue/5 px-2 py-0.5 rounded-full">
+              <span key={cat} className="text-sm text-gray-700">
                 {cat}
               </span>
             ))}
@@ -60,12 +60,12 @@ const DeleteNotice = ({ notice, setShowModal, onSuccess }) => {
         <div className="flex gap-3">
           <button
             onClick={() => setShowModal(null)}
-            className="flex-1 border-2 border-gray-200 text-gray-600 font-semibold text-sm py-2.5 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer"
+            className="flex-1 border-2 border-gray-200 text-gray-600 font-semibold text-sm py-2 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer"
           >Cancel</button>
           <button
             onClick={handleDelete}
             disabled={loading}
-            className="flex-1 bg-red-500 hover:bg-red-600 disabled:opacity-60 text-white font-semibold text-sm py-2.5 rounded-lg transition-colors flex items-center justify-center gap-2 cursor-pointer"
+            className="flex-1 bg-red-500 hover:bg-red-600 disabled:opacity-60 text-white font-semibold text-sm py-2 rounded-lg transition-colors flex items-center justify-center gap-2 cursor-pointer"
           >
             {loading ? (
               <>

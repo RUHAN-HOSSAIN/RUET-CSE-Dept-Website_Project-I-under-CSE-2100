@@ -1,12 +1,12 @@
 import formatDateToLocal from "../../utils/formatDateToLocal"
 
-const NewsEventsCard = ({ imgURL, title, date, description }) => {
+const NewsEventsCard = ({ imgURL, title, category, date, description }) => {
   return (
     <div className="flex flex-col group cursor-pointer">
 
       {/* Image — zooms on card hover */}
-      <div 
-        className="relative w-full overflow-hidden bg-light-blue/30" 
+      <div
+        className="relative w-full overflow-hidden bg-light-blue/30"
         style={{ paddingBottom: '62.5%' }}
       >
         <img
@@ -20,18 +20,27 @@ const NewsEventsCard = ({ imgURL, title, date, description }) => {
       <div className="font-poppins flex-1 flex flex-col" style={{ paddingTop: 'clamp(0.6rem, 1.2vw, 1rem)' }}>
 
         {/* Date */}
+
         <p
           className="text-dark-blue-0 font-medium"
           style={{ fontSize: 'clamp(0.8rem, 1vw, 0.95rem)' }}
-        >{formatDateToLocal(date)}</p>
+        >
+          {formatDateToLocal(date)}
+          {
+            category && (
+              <span className="text-gray-500 font-normal"> • {category}</span>
+            )
+          }
+        </p>
+
 
         {/* Title */}
         <p
           className="font-dmSans font-semibold text-black/85 group-hover:text-orange-600 transition-colors duration-200 line-clamp-3"
           style={{
-            fontSize:   'clamp(1rem, 1.15vw, 1.1rem)',
+            fontSize: 'clamp(1rem, 1.15vw, 1.1rem)',
             lineHeight: 1.5,
-            margin:     'clamp(0.4rem, 0.8vw, 0.75rem) 0 clamp(0.25rem, 0.5vw, 0.4rem)',
+            margin: 'clamp(0.4rem, 0.8vw, 0.75rem) 0 clamp(0.25rem, 0.5vw, 0.4rem)',
           }}
         >{title}</p>
 
@@ -40,12 +49,12 @@ const NewsEventsCard = ({ imgURL, title, date, description }) => {
           <p
             className="text-black/55 flex-1"
             style={{
-              fontSize:          'clamp(0.8rem, 0.95vw, 0.9rem)',
-              lineHeight:        1.6,
-              display:           '-webkit-box',
-              WebkitLineClamp:   3,
-              WebkitBoxOrient:   'vertical',
-              overflow:          'hidden',
+              fontSize: 'clamp(0.8rem, 0.95vw, 0.9rem)',
+              lineHeight: 1.6,
+              display: '-webkit-box',
+              WebkitLineClamp: 3,
+              WebkitBoxOrient: 'vertical',
+              overflow: 'hidden',
             }}
           >{description}</p>
         )}
