@@ -15,9 +15,6 @@ const router = express.Router();
 router.get("/stats", getAchievementStats);
 router.get("/", getAchievements);
 router.get("/:id", getAchievementById);
-// router.post('/',      upload.single('image'), createAchievement)
-// router.put('/:id',    upload.single('image'), updateAchievement)
-// router.delete('/:id', deleteAchievement)
 router.post("/", protect, upload.single("image"), createAchievement);
 router.put("/:id", protect, upload.single("image"), updateAchievement);
 router.delete("/:id", protect, deleteAchievement);

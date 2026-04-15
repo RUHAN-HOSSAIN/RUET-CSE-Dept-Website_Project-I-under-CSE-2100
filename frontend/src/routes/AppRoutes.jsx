@@ -142,15 +142,6 @@ const AppRoutes = () => {
         <Route path="*" element={<NotFound />} />
       </Route>
 
-
-      {/* <Route element={<ProtectedRoute />}>
-        <Route path={ADMIN_ROUTES.dashboard} element={<AdminDashboard />} />
-        <Route path={ADMIN_ROUTES.notice} element={<AdminDashboard />} />
-        <Route path={ADMIN_ROUTES.newsEvents} element={<AdminDashboard />} />
-        <Route path={ADMIN_ROUTES.achievements} element={<AdminDashboard />} />
-        <Route path={ADMIN_ROUTES.campusLife} element={<AdminDashboard />} />
-        <Route path={ADMIN_ROUTES.mouCollaborations} element={<AdminDashboard />} />
-      </Route> */}
       <Route element={<ProtectedRoute />}>
         <Route path={ADMIN_ROUTES.dashboard} element={<AdminDashboard />}>
           <Route index element={<DashboardBody />} />

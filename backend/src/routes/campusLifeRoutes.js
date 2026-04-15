@@ -15,9 +15,6 @@ const router = express.Router();
 router.get("/stats", getCampusLifeStats);
 router.get("/", getCampusLifes);
 router.get("/:id", getCampusLifeById);
-// router.post('/',      upload.single('image'), createCampusLife)
-// router.put('/:id',    upload.single('image'), updateCampusLife)
-// router.delete('/:id', deleteCampusLife)
 router.post("/", protect, upload.single("image"), createCampusLife);
 router.put("/:id", protect, upload.single("image"), updateCampusLife);
 router.delete("/:id", protect, deleteCampusLife);

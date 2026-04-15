@@ -186,35 +186,3 @@ const Login = () => {
 }
 
 export default Login
-
-
-
-// const Login = () => {
-//   return (
-//     <div className="min-h-[85vh] w-screen relative overflow-hidden flex items-center justify-center">
-//       {/* Grid + Left & Right Gradient Glow */}
-//       <div
-//         className="absolute inset-0 -z-5"
-//         style={{
-//           backgroundImage: `
-//        linear-gradient(to right, #f0f0f0 1px, transparent 1px),
-//        linear-gradient(to bottom, #f0f0f0 1px, transparent 1px),
-//        radial-gradient(circle 600px at 0% 200px, #BBDCFF, transparent),
-//        radial-gradient(circle 600px at 100% 200px, #BBDCFF, transparent)
-//      `,
-//           backgroundSize: `
-//        96px 64px,
-//        96px 64px,
-//        100% 100%,
-//        100% 100%
-//      `,
-//         }}
-//       />
-//         <div className="backdrop-blur-3xl p-50 rounded-lg shadow-lg z-10">
-//           <h1>Login Form</h1>
-//         </div>
-//     </div>
-//   )
-// }
-
-// export default Login

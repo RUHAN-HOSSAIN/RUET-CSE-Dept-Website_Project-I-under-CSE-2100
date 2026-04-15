@@ -9,9 +9,6 @@ const router = express.Router();
 router.get('/stats', getNewsEventStats);
 router.get("/", getNewsEvents);
 router.get('/:id', getNewsEventById)
-// router.post("/", upload.single("image"), createNewsEvent);
-// router.put("/:id", upload.single("image"), updateNewsEvent);
-// router.delete("/:id", deleteNewsEvent);
 router.post('/',    protect, upload.single('image'), createNewsEvent)
 router.put('/:id',  protect, upload.single('image'), updateNewsEvent)
 router.delete('/:id', protect,                       deleteNewsEvent)

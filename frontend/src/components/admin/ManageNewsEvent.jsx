@@ -97,11 +97,6 @@ const ManageNewsEvent = () => {
       {deleteTarget && <DeleteItem heading="News & Events" endpoint="/news-events" item={deleteTarget} setShowModal={setDeleteTarget} onSuccess={refresh} />}
       {detailTarget && <ItemDetail item={detailTarget} setShowModal={setDetailTarget} />}
 
-      {/* {showAdd && <AddNewsEvent setShowModal={setShowAdd} onSuccess={refresh} />}
-      {updateTarget && <UpdateNewsEvent item={updateTarget} setShowModal={setUpdateTarget} onSuccess={refresh} />}
-      {deleteTarget && <DeleteNewsEvent item={deleteTarget} setShowModal={setDeleteTarget} onSuccess={refresh} />}
-      {detailTarget && <NewsEventDetail item={detailTarget} setShowModal={setDetailTarget} />} */}
-
       <div className="px-6 sm:px-10 md:px-15 lg:px-20 py-10">
         {/* Breadcrumb */}
         <div className="flex items-center gap-2 mb-2 text-gray-400">
