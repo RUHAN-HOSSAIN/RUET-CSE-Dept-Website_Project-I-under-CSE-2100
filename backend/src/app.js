@@ -38,10 +38,35 @@ const authLimiter = rateLimit({
 app.use(helmet());
 app.use(generalLimiter);
 app.use(express.json());
-// CORS origin পরিবেশভিত্তিক ভ্যারিয়েবল ব্যবহার করে কনফিগার করা হয়
-app.use(cors({
-  origin: process.env.CORS_ORIGIN
-}))
+
+// CORS origin পরিবেশভিত্তিক ভ্যারিয়েবল ব্যবহার করে কনফিগার করা হয়
+// CORS_ORIGIN এ comma দিয়ে একাধিক URL দিতে পারেন
+// উদাহরণ: https://cseruet.vercel.app,https://cseruet2.vercel.app,http://localhost:5173
+const corsOrigins = process.env.CORS_ORIGIN?.split(',').map(url => url.trim()) || [];
+
+const corsOptions = {
+  origin: function (origin, callback) {
+    // অনুরোধে origin না থাকলে allow করুন (curl, mobile apps, server-to-server)
+    if (!origin) return callback(null, true);
+    // কোন URL configure না থাকলে সব allow করুন
+    if (corsOrigins.length === 0) return callback(null, true);
+    
+    // Normalize: trailing slash মুছে দিয়ে comparison করুন
+    const normalize = (url) => url.replace(/\/$/, '');
+    const normalizedOrigin = normalize(origin);
+    
+    // whitelist এ আছে কিনা চেক করুন (trailing slash সহ/ছাড়া উভয়ই handle)
+    const isAllowed = corsOrigins.some(url => normalize(url) === normalizedOrigin);
+    
+    if (isAllowed || corsOrigins.includes('*')) {
+      return callback(null, true);
+    }
+    return callback(new Error('Not allowed by CORS'));
+  },
+  credentials: true
+};
+
+app.use(cors(corsOptions));
 
 app.use('/api/auth', authLimiter, authRoutes);
 app.use("/api/notices", noticeRoutes);
