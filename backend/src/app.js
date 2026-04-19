@@ -23,7 +23,7 @@ const app = express();
 // সাধারণ রিকোয়েস্ট লিমিটার: API-তে অতিরিক্ত রিকোয়েস্ট থেকে সার্ভারকে রক্ষা করে
 const generalLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 মিনিট
-  limit: 100,
+  limit: 300,
   message: { message: 'Too many requests, please try again later' }
 })
 
@@ -43,7 +43,6 @@ app.use(cors({
   origin: process.env.CORS_ORIGIN
 }))
 
-// রুট নিবন্ধন: পাবলিক ও অ্যাডমিন রুট
 app.use('/api/auth', authLimiter, authRoutes);
 app.use("/api/notices", noticeRoutes);
 app.use("/api/news-events", newsEventRoutes);
