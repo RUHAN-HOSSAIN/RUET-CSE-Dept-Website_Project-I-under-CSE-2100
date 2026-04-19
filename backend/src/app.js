@@ -23,14 +23,14 @@ const app = express();
 // সাধারণ রিকোয়েস্ট লিমিটার: API-তে অতিরিক্ত রিকোয়েস্ট থেকে সার্ভারকে রক্ষা করে
 const generalLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 মিনিট
-  limit: 300,
+  limit: 500,
   message: { message: 'Too many requests, please try again later' }
 })
 
 // অথেনটিকেশন-নির্দিষ্ট লিমিটার: লগইন প্রচেষ্টাগুলো সীমিত করে
 const authLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 মিনিট
-  limit: 20,
+  limit: 50,
   message: { message: 'Too many login attempts, please try again later' }
 })
 
